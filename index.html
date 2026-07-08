@@ -12,23 +12,23 @@
     
     <meta property="og:title" content="PESO — Dominican Capital Token">
     <meta property="og:description" content="Premium hybrid token on Solana. Banking + Gaming + Gold + Yachts + Defense + PESO Card.">
-    <meta property="og:image" content="peso_logo.png">
+    <meta property="og:image" content="peso_logo_1.png">
     <meta property="og:url" content="https://peso.dominican">
     <meta property="og:type" content="website">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="PESO — Dominican Capital Token">
     <meta name="twitter:description" content="Premium hybrid token on Solana.">
-    <meta name="twitter:image" content="peso_logo.png">
+    <meta name="twitter:image" content="peso_logo_1.png">
     
-    <link rel="icon" type="image/png" href="peso_logo.png">
-    <link rel="apple-touch-icon" href="peso_logo.png">
+    <link rel="icon" type="image/png" href="peso_logo_1.png">
+    <link rel="apple-touch-icon" href="peso_logo_1.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         /* ============================================================
-           ROOT VARIABLES — ПРЕМИУМ ТЕМА
+           ROOT VARIABLES
            ============================================================ */
         :root {
             --peso-gold: #F5A623;
@@ -103,7 +103,7 @@
         }
 
         /* ============================================================
-           GOLD PARTICLES OVERLAY
+           GOLD PARTICLES
            ============================================================ */
         .gold-particles {
             position: fixed;
@@ -697,7 +697,7 @@
         .real-link:hover { color: var(--peso-white); }
 
         /* ============================================================
-           PESO CARD — СУПЕР-ПРЕМИУМ
+           PESO CARD
            ============================================================ */
         .card-container {
             max-width: 800px;
@@ -1209,7 +1209,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">
-                <img src="peso_logo.png" alt="PESO" width="32">
+                <img src="peso_logo_1.png" alt="PESO" width="32">
                 <span>PESO</span>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -1270,7 +1270,7 @@
             </div>
             <div class="hero-coin">
                 <div class="coin-3d">
-                    <img src="peso_coin_3d.png" alt="PESO Coin" class="rotating-coin">
+                    <img src="peso_logo_1.png" alt="PESO Coin" class="rotating-coin">
                     <div class="coin-glow"></div>
                     <div class="coin-ring"></div>
                     <div class="coin-ring-2"></div>
@@ -1406,7 +1406,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- PESO CARD — СУПЕР-ПРЕМИУМ                                    -->
+    <!-- PESO CARD                                                    -->
     <!-- ============================================================ -->
     <section class="page" id="pesocard">
         <div class="page-header">
@@ -1891,10 +1891,10 @@
         }
 
         // ============================================================
-        // PESO CARD — REAL BALANCE
+        // PESO CARD — РЕАЛЬНЫЙ БАЛАНС (ВАШ RPC)
         // ============================================================
         const PESO_MINT = '7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa';
-        const RPC_URL = 'https://api.mainnet-beta.solana.com';
+        const RPC_URL = 'https://weathered-falling-sheet.solana-mainnet.quiknode.pro/fa7eb339bbcbb020b714c2e15a4d31779008eb62';
 
         async function connectCard() {
             const status = document.getElementById('cardStatus');
@@ -1909,7 +1909,7 @@
                 window.cardConnected = true;
                 window.connection = new solanaWeb3.Connection(RPC_URL, 'confirmed');
                 
-                document.getElementById('cardAddress').textContent = window.cardPublicKey.toString();
+                document.getElementById('cardAddress').textContent = window.cardPublicKey.toString().slice(0, 28) + '...';
                 document.getElementById('connectCardBtn').textContent = '✅ Connected';
                 document.getElementById('connectCardBtn').style.background = '#14F195';
                 document.getElementById('connectCardBtn').style.color = '#0A1A2B';
@@ -1939,22 +1939,27 @@
                     window.cardPublicKey,
                     { mint: new solanaWeb3.PublicKey(PESO_MINT) }
                 );
+                
                 let balance = 0;
                 if (tokenAccounts.value.length > 0) {
                     const accountInfo = tokenAccounts.value[0].account.data.parsed.info;
                     balance = accountInfo.tokenAmount.uiAmount || 0;
                 }
+                
                 const peso = balance;
-                const usd = peso * window.currentPESOPrice;
+                const usd = peso * (window.currentPESOPrice || 0.0015);
+                
                 document.getElementById('cardBalance').textContent = peso.toFixed(2);
                 document.getElementById('cardBalanceUSD').textContent = '$' + usd.toFixed(2);
-                document.getElementById('cardCourse').textContent = '$' + window.currentPESOPrice.toFixed(4);
+                document.getElementById('cardCourse').textContent = '$' + (window.currentPESOPrice || 0.0015).toFixed(4);
+                
                 status.textContent = '✅ Balance updated';
                 status.style.color = 'rgba(255,255,255,0.4)';
+                
                 await updateCardHistory();
             } catch (error) {
                 console.error('Error loading balance:', error);
-                status.textContent = '⚠️ Error loading balance';
+                status.textContent = '❌ Error: ' + error.message;
                 status.style.color = '#FF6B35';
                 document.getElementById('cardBalance').textContent = '0.00';
                 document.getElementById('cardBalanceUSD').textContent = '$0.00';
@@ -2178,5 +2183,6 @@
         console.log('💧 Liquidity: $64.5M');
         console.log('📊 Market Cap: $150M');
     </script>
+
 </body>
 </html>
