@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PESO — Dominican Capital Token</title>
+    
+    <meta name="description" content="PESO is a premium hybrid token on Solana combining banking stability with gaming excitement. 100B supply, 0.25% fee.">
+    <meta name="keywords" content="PESO, Dominican token, Solana, buy crypto, Phantom wallet, casino, gold, yachts">
+    <meta name="author" content="PESO Team">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="PESO — Dominican Capital Token">
+    <meta property="og:description" content="Premium hybrid token on Solana. Banking + Gaming + Gold + Yachts + Defense.">
+    <meta property="og:image" content="peso_logo.png">
+    <meta property="og:url" content="https://peso.dominican">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PESO — Dominican Capital Token">
+    <meta name="twitter:description" content="Premium hybrid token on Solana.">
+    <meta name="twitter:image" content="peso_logo.png">
+    
+    <link rel="icon" type="image/png" href="peso_logo.png">
+    <link rel="apple-touch-icon" href="peso_logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================================
+           ROOT VARIABLES
+           ============================================================ */
+        :root {
+            --peso-gold: #F5A623;
+            --peso-sunset: #FF6B35;
+            --peso-ocean: #1A8FE3;
+            --peso-sand: #F5E6D3;
+            --peso-dark: #0A1A2B;
+            --peso-navy: #0D2B45;
+            --peso-white: #FFFFFF;
+            --glass: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--peso-dark);
+            color: var(--peso-white);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--peso-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--peso-gold); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--peso-sunset); }
+
+        /* VIDEO BACKGROUND */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10,26,43,0.92) 0%, rgba(13,43,69,0.85) 40%, rgba(10,26,43,0.92) 100%);
+            z-index: 1;
+        }
+        .video-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, rgba(255,107,53,0.06) 40%, transparent 70%);
+            z-index: 1;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* TICKER — Верхняя строка */
+        .ticker-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10,26,43,0.95);
+            border-bottom: 2px solid var(--peso-gold);
+            padding: 8px 0;
+            overflow: hidden;
+            height: 40px;
+            backdrop-filter: blur(10px);
+        }
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: tickerScroll 45s linear infinite;
+        }
+        .ticker span {
+            display: inline-block;
+            padding: 0 30px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--peso-white);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        .ticker span::after {
+            content: '✦';
+            position: absolute;
+            right: -5px;
+            color: var(--peso-gold);
+            font-size: 10px;
+        }
+        .ticker span:last-child::after { display: none; }
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* LANGUAGE SELECTOR */
+        .language-selector {
+            position: fixed;
+            top: 48px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 3px;
+            background: rgba(10,26,43,0.9);
+            padding: 5px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.4);
+            padding: 3px 7px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover { color: var(--peso-white); background: rgba(255,255,255,0.05); }
+        .lang-btn.active { color: var(--peso-gold); background: rgba(245,166,35,0.15); }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            padding: 12px 0;
+            transition: all 0.4s;
+        }
+        .navbar.scrolled {
+            top: 0;
+            background: rgba(10,26,43,0.95);
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--peso-gold);
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-logo img { border-radius: 50%; height: 32px; }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.6);
+            transition: color 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--peso-gold);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: var(--peso-white); }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--peso-white);
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* PAGES */
+        .page {
+            display: none;
+            padding: 80px 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 80vh;
+            position: relative;
+            z-index: 2;
+        }
+        .page.active { display: block; }
+        .page-header {
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--peso-gold);
+        }
+        .page-header p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 10px;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            z-index: 2;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 60px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .hero-content { max-width: 700px; }
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--peso-gold), #C9911A);
+            color: var(--peso-dark);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .title-gold {
+            background: linear-gradient(135deg, var(--peso-gold), #F5D98E, var(--peso-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .title-sub {
+            display: block;
+            font-size: 26px;
+            color: rgba(255,255,255,0.6);
+            -webkit-text-fill-color: rgba(255,255,255,0.6);
+            font-weight: 400;
+        }
+        .hero-description {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin: 20px 0 30px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .stat-value {
+            display: block;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--peso-gold);
+        }
+        .hero-stat .stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hero-stat .stat-change { font-size: 12px; font-weight: 600; }
+        .hero-stat .stat-change.positive { color: #14F195; }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--peso-gold), #C9911A);
+            color: var(--peso-dark);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245,166,35,0.3); }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--peso-white);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn-secondary:hover { border-color: var(--peso-gold); transform: translateY(-3px); }
+        .btn-tertiary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.7);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn-tertiary:hover { background: rgba(255,255,255,0.1); color: var(--peso-white); transform: translateY(-3px); }
+
+        /* HERO COIN */
+        .hero-coin { flex-shrink: 0; }
+        .coin-3d {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rotating-coin {
+            width: 280px;
+            height: 280px;
+            object-fit: contain;
+            animation: coinRotate 12s linear infinite;
+            filter: drop-shadow(0 0 60px rgba(245,166,35,0.3));
+            z-index: 2;
+        }
+        @keyframes coinRotate {
+            0% { transform: rotateY(0deg) rotateX(5deg); }
+            100% { transform: rotateY(360deg) rotateX(5deg); }
+        }
+        .coin-glow {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,166,35,0.2) 0%, rgba(255,107,53,0.05) 50%, transparent 80%);
+            animation: glowPulse 3s ease-in-out infinite;
+            z-index: 1;
+        }
+        .coin-ring {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 2px solid rgba(245,166,35,0.15);
+            animation: ringSpin 20s linear infinite;
+            z-index: 0;
+        }
+        .coin-ring-2 {
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            border: 1px dashed rgba(245,166,35,0.08);
+            animation: ringSpin 30s linear infinite reverse;
+            z-index: 0;
+        }
+        @keyframes ringSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* COUNTERS */
+        .counters-section {
+            position: relative;
+            z-index: 2;
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-header h2 {
+            font-size: 36px;
+            font-family: 'Playfair Display', serif;
+            color: var(--peso-gold);
+        }
+        .section-header p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 10px;
+        }
+        .counters-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+        .counter-item {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .counter-item:hover { transform: translateY(-6px); border-color: var(--peso-gold); }
+        .counter-icon { font-size: 28px; margin-bottom: 10px; }
+        .counter-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--peso-gold);
+            line-height: 1.2;
+        }
+        .counter-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .counter-sub {
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+            margin-top: 4px;
+        }
+
+        /* GRIDS */
+        .grid-3, .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--peso-gold);
+            box-shadow: 0 10px 40px rgba(245,166,35,0.1);
+        }
+        .card h3 { color: var(--peso-gold); margin-bottom: 12px; font-size: 1.5rem; }
+        .card p { color: #bbb; font-size: 0.95rem; }
+
+        /* PARTNERS TICKER */
+        .partners-ticker-wrap {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            overflow: hidden;
+            background: rgba(10,26,43,0.95);
+            padding: 20px 0;
+            border-top: 2px solid var(--peso-gold);
+            border-bottom: 2px solid var(--peso-gold);
+            margin: 10px 0;
+        }
+        .partners-ticker {
+            display: flex;
+            gap: 40px;
+            white-space: nowrap;
+            animation: partnersScroll 80s linear infinite;
+            width: max-content;
+            align-items: center;
+        }
+        .partners-ticker .partner-logo {
+            height: 48px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+            filter: grayscale(1) brightness(0.6);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .partners-ticker .partner-logo:hover {
+            filter: grayscale(0) brightness(1);
+            transform: scale(1.15);
+        }
+        .partners-ticker .partner-logo-text {
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--peso-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        @keyframes partnersScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ENTERTAINMENT GRID */
+        .entertainment-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .entertainment-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .entertainment-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--peso-gold);
+        }
+        .entertainment-card .icon { font-size: 40px; margin-bottom: 12px; }
+        .entertainment-card h4 { color: var(--peso-gold); margin-bottom: 8px; }
+        .entertainment-card p { color: rgba(255,255,255,0.5); font-size: 14px; }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.05);
+            color: var(--peso-white);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--peso-gold);
+            outline: none;
+        }
+
+        /* NEWS TICKER */
+        .news-ticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10,26,43,0.95);
+            border-top: 2px solid var(--peso-sunset);
+            padding: 6px 0;
+            overflow: hidden;
+            height: 34px;
+            backdrop-filter: blur(10px);
+        }
+        .news-ticker-content {
+            display: flex;
+            white-space: nowrap;
+            animation: newsScroll 45s linear infinite;
+        }
+        .news-ticker-content span {
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+        }
+        .news-ticker-content span:first-child { color: var(--peso-gold); font-weight: 700; }
+        @keyframes newsScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* FOOTER */
+        .footer {
+            position: relative;
+            z-index: 2;
+            background: rgba(10,26,43,0.98);
+            padding: 40px 60px 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .footer-col h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--peso-gold);
+        }
+        .footer-col a {
+            display: block;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            padding: 4px 0;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .footer-col a:hover { color: var(--peso-gold); transform: translateX(4px); }
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 20px auto 0;
+            padding-top: 16px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+        .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+        /* SCROLL TOP */
+        .scroll-top {
+            position: fixed;
+            bottom: 50px;
+            right: 30px;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--peso-gold), #C9911A);
+            color: var(--peso-dark);
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        .scroll-top.visible { opacity: 1; visibility: visible; }
+        .scroll-top:hover { transform: scale(1.1); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .hero { flex-direction: column; text-align: center; padding: 120px 30px 60px; }
+            .hero-content { max-width: 100%; }
+            .hero-stats { justify-content: center; }
+            .hero-buttons { justify-content: center; }
+            .hero-coin { margin-top: 40px; }
+            .coin-3d { width: 280px; height: 280px; }
+            .rotating-coin { width: 200px; height: 200px; }
+            .counters-grid { grid-template-columns: repeat(3, 1fr); }
+            .entertainment-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 40px; }
+            .title-sub { font-size: 20px; }
+            .hero { padding: 100px 20px 40px; }
+            .hero-stats { gap: 20px; }
+            .hero-stat .stat-value { font-size: 20px; }
+            .counters-grid { grid-template-columns: repeat(2, 1fr); }
+            .counter-number { font-size: 28px; }
+            .entertainment-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(10,26,43,0.98);
+                padding: 20px;
+                gap: 12px;
+                border-bottom: 1px solid var(--glass-border);
+            }
+            .footer-grid { grid-template-columns: 1fr; }
+            .partners-ticker .partner-logo { height: 30px; max-width: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VIDEO BACKGROUND -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="dominican-drone.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="video-glow"></div>
+    </div>
+
+    <!-- TOP TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span>💰 PESO — Dominican Capital Token</span>
+            <span>📈 Price: $0.0015</span>
+            <span>🏆 Market Cap: $150M</span>
+            <span>💧 Liquidity: $64.5M</span>
+            <span>🌐 Solana Network</span>
+            <span>🏦 Banking + Gaming + Gold</span>
+            <span>🛥️ Yachts & Jets</span>
+            <span>🛡️ Defense Fund</span>
+            <span>🎰 Casinos & Sports</span>
+            <span>🇩🇴 Dominican Republic</span>
+        </div>
+    </div>
+
+    <!-- LANGUAGE SELECTOR -->
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
+        <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
+        <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+        <button class="lang-btn" data-lang="it">🇮🇹 IT</button>
+        <button class="lang-btn" data-lang="zh">🇨🇳 ZH</button>
+        <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <img src="peso_logo.png" alt="PESO" width="32">
+                <span>PESO</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#buy">Buy</a></li>
+                <li><a href="#price">Price</a></li>
+                <li><a href="#staking">Staking</a></li>
+                <li><a href="#tokenomics">Tokenomics</a></li>
+                <li><a href="#gold">Gold</a></li>
+                <li><a href="#luxury">Luxury</a></li>
+                <li><a href="#defense">Defense</a></li>
+                <li><a href="#entertainment">Entertainment</a></li>
+                <li><a href="#ecosystem">Ecosystem</a></li>
+                <li><a href="#whitepaper">Whitepaper</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <!-- ========================================================= -->
+    <!-- HOME                                                       -->
+    <!-- ========================================================= -->
+    <section class="page active" id="home">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">🏦🇩🇴 PREMIUM HYBRID TOKEN</div>
+                <h1 class="hero-title">
+                    <span class="title-gold">PESO</span>
+                    <span class="title-sub">Where Banking Meets Fortune</span>
+                </h1>
+                <p class="hero-description">
+                    Premium hybrid token on Solana. Banking stability + gaming thrill + gold + yachts + defense.<br>
+                    100B supply • 0.25% fee • ×10 potential
+                </p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-value">$0.0015</span>
+                        <span class="stat-label">Price</span>
+                        <span class="stat-change positive">+0.1%</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-value">$150M</span>
+                        <span class="stat-label">Market Cap</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-value">$64.5M</span>
+                        <span class="stat-label">Liquidity</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#buy" class="btn-primary">🚀 Buy PESO Now</a>
+                    <a href="#price" class="btn-secondary">📊 Live Price</a>
+                    <a href="https://solscan.io/token/YOUR_MINT" target="_blank" class="btn-tertiary">🔍 Check Token</a>
+                </div>
+            </div>
+            <div class="hero-coin">
+                <div class="coin-3d">
+                    <img src="peso_logo.png" alt="PESO Coin" class="rotating-coin">
+                    <div class="coin-glow"></div>
+                    <div class="coin-ring"></div>
+                    <div class="coin-ring-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTERS -->
+        <section class="counters-section">
+            <div class="section-header">
+                <h2>📊 Key Metrics</h2>
+                <p>Real PESO token statistics</p>
+            </div>
+            <div class="counters-grid">
+                <div class="counter-item">
+                    <div class="counter-icon">💰</div>
+                    <div class="counter-number" data-target="100000000000">0</div>
+                    <div class="counter-label">Total Supply</div>
+                    <div class="counter-sub">100,000,000,000 PESO</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-icon">💧</div>
+                    <div class="counter-number" data-target="64500000">0</div>
+                    <div class="counter-label">Liquidity</div>
+                    <div class="counter-sub">$64.5M</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-icon">📈</div>
+                    <div class="counter-number" data-target="412940">0</div>
+                    <div class="counter-label">24h Volume</div>
+                    <div class="counter-sub">$412.94K</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-icon">🏦</div>
+                    <div class="counter-number" data-target="15">0</div>
+                    <div class="counter-label">Staking APY</div>
+                    <div class="counter-sub">% per year</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-icon">👥</div>
+                    <div class="counter-number" data-target="1234">0</div>
+                    <div class="counter-label">Holders</div>
+                    <div class="counter-sub">Unique wallets</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-icon">🔥</div>
+                    <div class="counter-number" data-target="1000000">0</div>
+                    <div class="counter-label">Burned</div>
+                    <div class="counter-sub">1,000,000 PESO</div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- BUY                                                        -->
+    <!-- ========================================================= -->
+    <section class="page" id="buy">
+        <div class="page-header">
+            <h1>🟣 Buy PESO Instantly</h1>
+            <p>Connect your wallet and buy PESO in one click</p>
+        </div>
+        <div style="max-width:700px;margin:0 auto;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;">
+            <button class="btn-primary" style="width:100%;" onclick="connectPhantom()">🔌 Connect Phantom</button>
+            <p id="walletStatus" style="text-align:center;margin:16px 0;color:rgba(255,255,255,0.5);">Not connected</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
+                <a href="https://jup.ag/" target="_blank" class="btn-primary" style="background:#9945FF;color:white;">🟣 Jupiter</a>
+                <a href="https://meteora.ag/" target="_blank" class="btn-primary" style="background:#00D4AA;color:black;">💧 Meteora</a>
+                <a href="https://raydium.io/" target="_blank" class="btn-primary" style="background:#6A1B9A;color:white;">⚡ Raydium</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PRICE                                                      -->
+    <!-- ========================================================= -->
+    <section class="page" id="price">
+        <div class="page-header">
+            <h1>📊 Live PESO Price</h1>
+            <p>Real-time price, market cap, and volume</p>
+        </div>
+        <div style="max-width:900px;margin:0 auto;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;">
+            <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+                <span style="font-size:14px;color:rgba(255,255,255,0.5);">PESO Price</span>
+                <span style="font-size:36px;font-weight:700;color:var(--peso-white);" id="livePriceValue">$0.0015</span>
+                <span style="font-size:16px;font-weight:600;padding:4px 12px;border-radius:12px;color:#14F195;background:rgba(20,241,149,0.1);" id="livePriceChange">+0.1%</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;padding-top:20px;border-top:1px solid var(--glass-border);">
+                <div style="text-align:center;"><span style="font-size:12px;color:rgba(255,255,255,0.4);">Market Cap</span><strong style="display:block;font-size:16px;color:var(--peso-white);">$150M</strong></div>
+                <div style="text-align:center;"><span style="font-size:12px;color:rgba(255,255,255,0.4);">24h Volume</span><strong style="display:block;font-size:16px;color:var(--peso-white);">$412.94K</strong></div>
+                <div style="text-align:center;"><span style="font-size:12px;color:rgba(255,255,255,0.4);">Liquidity</span><strong style="display:block;font-size:16px;color:var(--peso-white);">$64.5M</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- STAKING                                                    -->
+    <!-- ========================================================= -->
+    <section class="page" id="staking">
+        <div class="page-header">
+            <h1>💰 PESO Staking</h1>
+            <p>Earn up to 15% APY by locking your tokens</p>
+        </div>
+        <div class="grid-3" style="max-width:1000px;margin:0 auto;">
+            <div class="card"><h3>3 Months</h3><p>APY: 8%</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
+            <div class="card" style="border-color:var(--peso-gold);"><h3>6 Months</h3><p>APY: 12%</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
+            <div class="card"><h3>12 Months</h3><p>APY: 15%</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- TOKENOMICS                                                 -->
+    <!-- ========================================================= -->
+    <section class="page" id="tokenomics">
+        <div class="page-header">
+            <h1>📊 Tokenomics</h1>
+            <p>PESO token distribution and economics</p>
+        </div>
+        <div class="grid-3" style="max-width:900px;margin:0 auto;">
+            <div class="card"><h3>40%</h3><p>Public Sale</p></div>
+            <div class="card"><h3>20%</h3><p>Liquidity</p></div>
+            <div class="card"><h3>15%</h3><p>Staking Rewards</p></div>
+            <div class="card"><h3>10%</h3><p>Team & Advisors</p></div>
+            <div class="card"><h3>10%</h3><p>Ecosystem</p></div>
+            <div class="card"><h3>5%</h3><p>Reserve</p></div>
+        </div>
+        <p style="text-align:center;color:rgba(255,255,255,0.4);margin-top:20px;">Total Supply: 100,000,000,000 PESO</p>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- GOLD — Слитки, скупка                                     -->
+    <!-- ========================================================= -->
+    <section class="page" id="gold">
+        <div class="page-header">
+            <h1>🏦 Gold Vault & Bullion</h1>
+            <p>Buy, sell, and store precious metals with PESO</p>
+        </div>
+        <div class="grid-3" style="max-width:1000px;margin:0 auto;">
+            <div class="card"><h3>🥇 Gold Bars</h3><p>1g – 1kg. Swiss storage. Buy with PESO.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Buy Gold</button></div>
+            <div class="card"><h3>🥈 Silver & Platinum</h3><p>Diversify with silver and platinum bars.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Buy Silver</button></div>
+            <div class="card"><h3>🔄 Scrap Gold</h3><p>Sell your gold jewelry for PESO. Best rates.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Sell Gold</button></div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- LUXURY — Яхты, самолёты, авто                            -->
+    <!-- ========================================================= -->
+    <section class="page" id="luxury">
+        <div class="page-header">
+            <h1>🛥️ Luxury Rentals</h1>
+            <p>Yachts, private jets, and exotic cars — pay with PESO</p>
+        </div>
+        <div class="grid-3" style="max-width:1000px;margin:0 auto;">
+            <div class="card"><h3>⛵ Yachts</h3><p>From 30ft to 200ft. Caribbean & worldwide. 10% off with PESO.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Yacht</button></div>
+            <div class="card"><h3>✈️ Private Jets</h3><p>Gulfstream, Bombardier. Global coverage. 15% off with PESO.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Jet</button></div>
+            <div class="card"><h3>🏎️ Exotic Cars</h3><p>Ferrari, Lamborghini, Rolls Royce. 10% off with PESO.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Car</button></div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- DEFENSE — Оборонная сфера                                -->
+    <!-- ========================================================= -->
+    <section class="page" id="defense">
+        <div class="page-header">
+            <h1>🛡️ Defense & Security</h1>
+            <p>Invest in defense startups and support veterans</p>
+        </div>
+        <div class="grid-3" style="max-width:1000px;margin:0 auto;">
+            <div class="card"><h3>⚔️ Defense Fund</h3><p>Invest in cybersecurity, drones, AI startups.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Invest</button></div>
+            <div class="card"><h3>🎖️ Veterans Fund</h3><p>Support veterans with education and rehabilitation.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Donate</button></div>
+            <div class="card"><h3>🔒 Security Token</h3><p>Tokenized shares in defense projects.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Buy</button></div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- ENTERTAINMENT — Казино, спорт, лотереи                   -->
+    <!-- ========================================================= -->
+    <section class="page" id="entertainment">
+        <div class="page-header">
+            <h1>🎰 Entertainment</h1>
+            <p>Casino, sports betting, lottery — all with PESO</p>
+        </div>
+        <div class="entertainment-grid" style="max-width:1100px;margin:0 auto;">
+            <div class="entertainment-card"><div class="icon">🎰</div><h4>Casino</h4><p>Slots, poker, roulette</p><button class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Play</button></div>
+            <div class="entertainment-card"><div class="icon">⚾</div><h4>Sports Betting</h4><p>Baseball, football, boxing</p><button class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Bet</button></div>
+            <div class="entertainment-card"><div class="icon">🎲</div><h4>Lottery</h4><p>Daily jackpots & draws</p><button class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Buy Ticket</button></div>
+            <div class="entertainment-card"><div class="icon">🏆</div><h4>Tournaments</h4><p>Weekly competitions</p><button class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Join</button></div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- ECOSYSTEM — Полная карта                                 -->
+    <!-- ========================================================= -->
+    <section class="page" id="ecosystem">
+        <div class="page-header">
+            <h1>🌍 PESO Ecosystem</h1>
+            <p>Everything in one token — banking, gold, luxury, defense, entertainment</p>
+        </div>
+        <div class="grid-3" style="max-width:1100px;margin:0 auto;">
+            <div class="card"><h3>🏦 Banking</h3><p>Staking, loans, PESO card, remittances</p></div>
+            <div class="card"><h3>🥇 Gold Vault</h3><p>Buy, sell, store precious metals</p></div>
+            <div class="card"><h3>🛥️ Luxury</h3><p>Yachts, jets, exotic cars</p></div>
+            <div class="card"><h3>🛡️ Defense</h3><p>Startup investments, veterans fund</p></div>
+            <div class="card"><h3>🎰 Entertainment</h3><p>Casino, sports, lottery</p></div>
+            <div class="card"><h3>🌎 Global</h3><p>DEX listings, partnerships, DAO</p></div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- WHITEPAPER                                                 -->
+    <!-- ========================================================= -->
+    <section class="page" id="whitepaper">
+        <div class="page-header">
+            <h1>📄 Whitepaper</h1>
+            <p>Everything you need to know about PESO</p>
+        </div>
+        <div style="max-width:900px;margin:0 auto;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;">
+            <h2 style="color:var(--peso-gold);">PESO — Premium Exchange & Stake Opportunity</h2>
+            <p style="color:rgba(255,255,255,0.7);margin:20px 0;">Hybrid token on Solana combining banking, gaming, gold, luxury, and defense.</p>
+            <p><strong>Token Details:</strong> 100B supply, $0.0015 price, 0.25% fee, 15% APY staking.</p>
+            <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--glass-border);">
+                <a href="#" class="btn-primary" download>⬇️ Download Whitepaper (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- CONTACT                                                    -->
+    <!-- ========================================================= -->
+    <section class="page" id="contact">
+        <div class="page-header">
+            <h1>📬 Contact Us</h1>
+            <p>We'd love to hear from you</p>
+        </div>
+        <div class="contact-grid">
+            <div>
+                <div style="margin-bottom:20px;"><span style="font-size:28px;">📧</span><h4 style="color:var(--peso-gold);">Email</h4><p style="color:rgba(255,255,255,0.5);">info@peso.dominican</p></div>
+                <div style="margin-bottom:20px;"><span style="font-size:28px;">📱</span><h4 style="color:var(--peso-gold);">Telegram</h4><p style="color:rgba(255,255,255,0.5);">@PESO_Official</p></div>
+                <div style="margin-bottom:20px;"><span style="font-size:28px;">🐦</span><h4 style="color:var(--peso-gold);">Twitter</h4><p style="color:rgba(255,255,255,0.5);">@PESO_Token</p></div>
+                <div><span style="font-size:28px;">📍</span><h4 style="color:var(--peso-gold);">Location</h4><p style="color:rgba(255,255,255,0.5);">Dominican Republic</p></div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject">
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PARTNERS TICKER                                           -->
+    <!-- ========================================================= -->
+    <div class="partners-ticker-wrap">
+        <div class="partners-ticker">
+            <span class="partner-logo-text">🏦 Banreservas</span>
+            <span class="partner-logo-text">🏦 Banco Popular</span>
+            <span class="partner-logo-text">🥇 Gold Vault</span>
+            <span class="partner-logo-text">🛥️ Yacht Club</span>
+            <span class="partner-logo-text">✈️ Private Jets</span>
+            <span class="partner-logo-text">🏎️ Exotic Cars</span>
+            <span class="partner-logo-text">🎰 Hard Rock Casino</span>
+            <span class="partner-logo-text">⚾ Loteka Sports</span>
+            <span class="partner-logo-text">🎲 Lotería Nacional</span>
+            <span class="partner-logo-text">🏨 Riu Hotels</span>
+            <span class="partner-logo-text">🏨 Iberostar</span>
+            <span class="partner-logo-text">🛡️ Defense Fund</span>
+            <span class="partner-logo-text">🎖️ Veterans</span>
+            <span class="partner-logo-text">💎 PESO Foundation</span>
+            <span class="partner-logo-text">🌊 Solana</span>
+            <span class="partner-logo-text">🟣 Jupiter</span>
+            <span class="partner-logo-text">💧 Meteora</span>
+            <span class="partner-logo-text">⚡ Raydium</span>
+            <span class="partner-logo-text">🇩🇴 Dominican Republic</span>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- NEWS TICKER (нижний)                                      -->
+    <!-- ========================================================= -->
+    <div class="news-ticker">
+        <div class="news-ticker-content">
+            <span>📰 News:</span>
+            <span>🔹 PESO launched on Meteora — trading live!</span>
+            <span>🔹 Gold Vault integration — buy bullion with PESO</span>
+            <span>🔹 Yacht Club partnership — 10% discount</span>
+            <span>🔹 Defense Fund launched — invest in cybersecurity</span>
+            <span>🔹 Sports betting coming soon — baseball, football</span>
+            <span>🔹 Staking APY up to 15% — lock your PESO</span>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- FOOTER                                                     -->
+    <!-- ========================================================= -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🏦 PESO</h4>
+                <p style="color:rgba(255,255,255,0.5);">Premium hybrid token on Solana. Banking + Gaming + Gold + Luxury + Defense.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#buy">Buy PESO</a>
+                <a href="#price">Price</a>
+                <a href="#staking">Staking</a>
+                <a href="#tokenomics">Tokenomics</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#gold">Gold Vault</a>
+                <a href="#luxury">Luxury Rentals</a>
+                <a href="#defense">Defense Fund</a>
+                <a href="#entertainment">Entertainment</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="https://solscan.io/" target="_blank">Solscan</a>
+                <a href="https://jup.ag/" target="_blank">Jupiter</a>
+                <a href="https://meteora.ag/" target="_blank">Meteora</a>
+                <a href="#whitepaper">Whitepaper</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 PESO — Dominican Capital Token. Made with ❤️ in Dominican Republic.</p>
+        </div>
+    </footer>
+
+    <!-- SCROLL TOP -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">⬆</button>
+
+    <!-- ========================================================= -->
+    <!-- SCRIPTS                                                   -->
+    <!-- ========================================================= -->
+    <script>
+        // COUNTERS
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.counter-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            counters.forEach(c => observer.observe(c));
+        });
+
+        function animateCounter(el) {
+            const target = parseFloat(el.dataset.target);
+            const duration = 2500;
+            const start = performance.now();
+            function update(t) {
+                const progress = Math.min((t - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const current = eased * target;
+                let display;
+                if (target >= 1000000000) display = (current / 1000000000).toFixed(1) + 'B';
+                else if (target >= 1000000) display = (current / 1000000).toFixed(1) + 'M';
+                else if (target >= 1000) display = Math.floor(current).toLocaleString();
+                else display = Math.floor(current).toString();
+                el.textContent = display;
+                if (progress < 1) requestAnimationFrame(update);
+                else {
+                    let final;
+                    if (target >= 1000000000) final = (target / 1000000000).toFixed(1) + 'B';
+                    else if (target >= 1000000) final = (target / 1000000).toFixed(1) + 'M';
+                    else if (target >= 1000) final = target.toLocaleString();
+                    else final = target.toString();
+                    el.textContent = final;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // PHANTOM WALLET
+        function connectPhantom() {
+            const status = document.getElementById('walletStatus');
+            if (window.solana && window.solana.isPhantom) {
+                window.solana.connect().then(resp => {
+                    status.innerHTML = '✅ Connected: ' + resp.publicKey.toString().slice(0, 8) + '...';
+                    status.style.color = '#14F195';
+                }).catch(err => {
+                    status.innerHTML = '❌ Connection failed';
+                    status.style.color = '#FF6B35';
+                });
+            } else {
+                status.innerHTML = '⚠️ Install <a href="https://phantom.app/" target="_blank" style="color:#F5A623;">Phantom</a> wallet';
+                window.open('https://phantom.app/', '_blank');
+            }
+        }
+
+        // NAVIGATION
+        document.addEventListener('DOMContentLoaded', function() {
+            function navigateTo(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const target = document.getElementById(pageId);
+                if (target) target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                document.getElementById('navLinks')?.classList.remove('active');
+                document.getElementById('mobileMenuBtn').textContent = '☰';
+                history.pushState(null, '', '#' + pageId);
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    e.preventDefault();
+                    const pageId = href.substring(1);
+                    navigateTo(pageId);
+                });
+            });
+
+            window.addEventListener('popstate', function() {
+                const pageId = window.location.hash.substring(1) || 'home';
+                navigateTo(pageId);
+            });
+
+            if (window.location.hash) {
+                const pageId = window.location.hash.substring(1);
+                navigateTo(pageId);
+            }
+
+            // Mobile menu
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function() {
+                    const menu = document.getElementById('navLinks');
+                    menu.classList.toggle('active');
+                    this.textContent = menu.classList.contains('active') ? '✕' : '☰';
+                });
+            }
+
+            // Navbar scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                navbar.classList.toggle('scrolled', window.pageYOffset > 50);
+            });
+
+            // Scroll top
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            window.addEventListener('scroll', function() {
+                scrollBtn.classList.toggle('visible', window.pageYOffset > 300);
+            });
+
+            window.scrollToTop = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+        });
+
+        // LANGUAGE
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                alert('Language switched to ' + this.innerText + ' (demo)');
+            });
+        });
+
+        // PRICE
+        function updatePrice() {
+            const basePrice = 0.0015;
+            const change = (Math.random() - 0.5) * 0.00006;
+            const price = basePrice + change;
+            const pct = ((price - basePrice) / basePrice * 100);
+            const priceEl = document.getElementById('livePriceValue');
+            const changeEl = document.getElementById('livePriceChange');
+            if (priceEl) priceEl.textContent = '$' + price.toFixed(5);
+            if (changeEl) {
+                changeEl.textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
+                changeEl.className = 'price-change ' + (pct >= 0 ? 'positive' : 'negative');
+            }
+        }
+        setInterval(updatePrice, 5000);
+
+        console.log('🚀 PESO Website loaded successfully!');
+        console.log('📍 Mint Address: 7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa');
+        console.log('💰 Price: $0.0015');
+        console.log('💧 Liquidity: $64.5M');
+        console.log('📊 Market Cap: $150M');
+    </script>
+
+</body>
+          </html>
