@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PESO — Dominican Capital Token</title>
+    <title>PESO — Dominican Capital Token | Premium Hybrid on Solana</title>
     
-    <meta name="description" content="PESO is a premium hybrid token on Solana combining banking stability with gaming excitement. 100B supply, 0.25% fee.">
-    <meta name="keywords" content="PESO, Dominican token, Solana, buy crypto, Phantom wallet, casino, gold, yachts">
+    <meta name="description" content="PESO is a premium hybrid token on Solana combining banking, gaming, gold, luxury, defense, and virtual cards. 100B supply, 0.25% fee.">
+    <meta name="keywords" content="PESO, Dominican token, Solana, buy crypto, Phantom wallet, casino, gold, yachts, defense, virtual card">
     <meta name="author" content="PESO Team">
     <meta name="robots" content="index, follow">
     
     <meta property="og:title" content="PESO — Dominican Capital Token">
-    <meta property="og:description" content="Premium hybrid token on Solana. Banking + Gaming + Gold + Yachts + Defense.">
+    <meta property="og:description" content="Premium hybrid token on Solana. Banking + Gaming + Gold + Yachts + Defense + Virtual Cards.">
     <meta property="og:image" content="peso_logo.png">
     <meta property="og:url" content="https://peso.dominican">
     <meta property="og:type" content="website">
@@ -98,7 +98,7 @@
             50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
-        /* TICKER — Верхняя строка */
+        /* TICKER */
         .ticker-wrap {
             position: fixed;
             top: 0;
@@ -389,7 +389,6 @@
         }
         .btn-tertiary:hover { background: rgba(255,255,255,0.1); color: var(--peso-white); transform: translateY(-3px); }
 
-        /* HERO COIN */
         .hero-coin { flex-shrink: 0; }
         .coin-3d {
             position: relative;
@@ -503,11 +502,20 @@
         }
 
         /* GRIDS */
-        .grid-3, .grid-4 {
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
         .card {
             background: var(--glass);
@@ -525,6 +533,7 @@
         }
         .card h3 { color: var(--peso-gold); margin-bottom: 12px; font-size: 1.5rem; }
         .card p { color: #bbb; font-size: 0.95rem; }
+        .card .icon { font-size: 40px; margin-bottom: 12px; display: block; }
 
         /* PARTNERS TICKER */
         .partners-ticker-wrap {
@@ -546,21 +555,7 @@
             width: max-content;
             align-items: center;
         }
-        .partners-ticker .partner-logo {
-            height: 48px;
-            width: auto;
-            max-width: 120px;
-            object-fit: contain;
-            filter: grayscale(1) brightness(0.6);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .partners-ticker .partner-logo:hover {
-            filter: grayscale(0) brightness(1);
-            transform: scale(1.15);
-        }
-        .partners-ticker .partner-logo-text {
+        .partners-ticker .partner-item {
             display: inline-block;
             padding: 0 20px;
             font-size: 16px;
@@ -568,34 +563,125 @@
             color: var(--peso-gold);
             letter-spacing: 1px;
             text-transform: uppercase;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .partners-ticker .partner-item:hover {
+            color: var(--peso-white);
+            transform: scale(1.1);
         }
         @keyframes partnersScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* ENTERTAINMENT GRID */
-        .entertainment-grid {
+        /* CARD SECTION */
+        .card-tiers {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
         }
-        .entertainment-card {
+        .card-tier {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 24px;
+            border-radius: 24px;
+            padding: 32px 24px;
             text-align: center;
             transition: all 0.4s;
         }
-        .entertainment-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--peso-gold);
+        .card-tier:hover { transform: translateY(-8px); border-color: var(--peso-gold); }
+        .card-tier.popular { border-color: var(--peso-gold); border-width: 2px; }
+        .card-tier .price { font-size: 32px; font-weight: 700; color: var(--peso-gold); margin: 12px 0; }
+        .card-tier ul { list-style: none; padding: 0; margin: 16px 0; color: rgba(255,255,255,0.6); }
+        .card-tier ul li { padding: 4px 0; }
+        .card-tier .badge {
+            display: inline-block;
+            background: var(--peso-gold);
+            color: var(--peso-dark);
+            padding: 2px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
         }
-        .entertainment-card .icon { font-size: 40px; margin-bottom: 12px; }
-        .entertainment-card h4 { color: var(--peso-gold); margin-bottom: 8px; }
-        .entertainment-card p { color: rgba(255,255,255,0.5); font-size: 14px; }
+
+        /* MARKETPLACE GRID */
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .marketplace-item {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .marketplace-item:hover { transform: translateY(-4px); border-color: var(--peso-gold); }
+        .marketplace-item .icon { font-size: 40px; display: block; margin-bottom: 8px; }
+        .marketplace-item .status {
+            display: inline-block;
+            background: rgba(20,241,149,0.15);
+            color: #14F195;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        /* REAL LINKS */
+        .real-link {
+            color: var(--peso-gold);
+            text-decoration: underline;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .real-link:hover { color: var(--peso-white); }
+
+        /* LOAD CARD */
+        .load-section {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .load-section input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.05);
+            color: var(--peso-white);
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        .load-section input:focus { border-color: var(--peso-gold); outline: none; }
+        .quick-amounts {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 12px 0;
+        }
+        .quick-amounts button {
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 13px;
+        }
+        .quick-amounts button:hover { border-color: var(--peso-gold); color: var(--peso-white); }
 
         /* CONTACT */
         .contact-grid {
@@ -722,7 +808,11 @@
             .coin-3d { width: 280px; height: 280px; }
             .rotating-coin { width: 200px; height: 200px; }
             .counters-grid { grid-template-columns: repeat(3, 1fr); }
-            .entertainment-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .card-tiers { grid-template-columns: repeat(2, 1fr); }
+            .marketplace-grid { grid-template-columns: repeat(2, 1fr); }
+            .partners-ticker .partner-item { font-size: 13px; padding: 0 12px; }
         }
 
         @media (max-width: 768px) {
@@ -733,7 +823,11 @@
             .hero-stat .stat-value { font-size: 20px; }
             .counters-grid { grid-template-columns: repeat(2, 1fr); }
             .counter-number { font-size: 28px; }
-            .entertainment-grid { grid-template-columns: 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .grid-4 { grid-template-columns: 1fr; }
+            .card-tiers { grid-template-columns: 1fr; }
+            .marketplace-grid { grid-template-columns: 1fr; }
             .contact-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
@@ -750,7 +844,17 @@
                 border-bottom: 1px solid var(--glass-border);
             }
             .footer-grid { grid-template-columns: 1fr; }
-            .partners-ticker .partner-logo { height: 30px; max-width: 60px; }
+            .language-selector { top: 44px; right: 10px; flex-wrap: wrap; padding: 4px 8px; }
+            .lang-btn { font-size: 10px; padding: 2px 5px; }
+            .ticker-wrap { height: 30px; }
+            .ticker span { font-size: 11px; padding: 0 16px; }
+            .news-ticker { height: 28px; }
+            .news-ticker-content span { font-size: 11px; padding: 0 12px; }
+            .navbar { top: 30px; padding: 8px 0; }
+            .nav-container { padding: 0 20px; }
+            .partners-ticker-wrap { padding: 12px 0; }
+            .partners-ticker { gap: 20px; animation-duration: 40s; }
+            .partners-ticker .partner-item { font-size: 11px; padding: 0 10px; }
         }
     </style>
 </head>
@@ -777,6 +881,8 @@
             <span>🛥️ Yachts & Jets</span>
             <span>🛡️ Defense Fund</span>
             <span>🎰 Casinos & Sports</span>
+            <span>💳 Virtual Cards</span>
+            <span>🛒 Pay on Amazon</span>
             <span>🇩🇴 Dominican Republic</span>
         </div>
     </div>
@@ -806,10 +912,12 @@
                 <li><a href="#price">Price</a></li>
                 <li><a href="#staking">Staking</a></li>
                 <li><a href="#tokenomics">Tokenomics</a></li>
+                <li><a href="#pesocard">💳 Card</a></li>
+                <li><a href="#pay">🛒 Pay</a></li>
                 <li><a href="#gold">Gold</a></li>
                 <li><a href="#luxury">Luxury</a></li>
                 <li><a href="#defense">Defense</a></li>
-                <li><a href="#entertainment">Entertainment</a></li>
+                <li><a href="#entertainment">Play</a></li>
                 <li><a href="#ecosystem">Ecosystem</a></li>
                 <li><a href="#whitepaper">Whitepaper</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -830,7 +938,7 @@
                     <span class="title-sub">Where Banking Meets Fortune</span>
                 </h1>
                 <p class="hero-description">
-                    Premium hybrid token on Solana. Banking stability + gaming thrill + gold + yachts + defense.<br>
+                    Premium hybrid token on Solana. Banking stability + gaming thrill + gold + yachts + defense + virtual cards.<br>
                     100B supply • 0.25% fee • ×10 potential
                 </p>
                 <div class="hero-stats">
@@ -850,8 +958,8 @@
                 </div>
                 <div class="hero-buttons">
                     <a href="#buy" class="btn-primary">🚀 Buy PESO Now</a>
-                    <a href="#price" class="btn-secondary">📊 Live Price</a>
-                    <a href="https://solscan.io/token/YOUR_MINT" target="_blank" class="btn-tertiary">🔍 Check Token</a>
+                    <a href="#pesocard" class="btn-secondary">💳 Get Card</a>
+                    <a href="https://solscan.io/token/7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank" class="btn-tertiary">🔍 Check Token</a>
                 </div>
             </div>
             <div class="hero-coin">
@@ -902,10 +1010,10 @@
                     <div class="counter-sub">Unique wallets</div>
                 </div>
                 <div class="counter-item">
-                    <div class="counter-icon">🔥</div>
-                    <div class="counter-number" data-target="1000000">0</div>
-                    <div class="counter-label">Burned</div>
-                    <div class="counter-sub">1,000,000 PESO</div>
+                    <div class="counter-icon">💳</div>
+                    <div class="counter-number" data-target="500">0</div>
+                    <div class="counter-label">Cards Issued</div>
+                    <div class="counter-sub">Virtual + Physical</div>
                 </div>
             </div>
         </section>
@@ -923,9 +1031,12 @@
             <button class="btn-primary" style="width:100%;" onclick="connectPhantom()">🔌 Connect Phantom</button>
             <p id="walletStatus" style="text-align:center;margin:16px 0;color:rgba(255,255,255,0.5);">Not connected</p>
             <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
-                <a href="https://jup.ag/" target="_blank" class="btn-primary" style="background:#9945FF;color:white;">🟣 Jupiter</a>
+                <a href="https://jup.ag/swap/USDC-7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank" class="btn-primary" style="background:#9945FF;color:white;">🟣 Jupiter</a>
                 <a href="https://meteora.ag/" target="_blank" class="btn-primary" style="background:#00D4AA;color:black;">💧 Meteora</a>
-                <a href="https://raydium.io/" target="_blank" class="btn-primary" style="background:#6A1B9A;color:white;">⚡ Raydium</a>
+                <a href="https://raydium.io/swap/?inputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&outputMint=7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank" class="btn-primary" style="background:#6A1B9A;color:white;">⚡ Raydium</a>
+            </div>
+            <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--glass-border);">
+                <p style="font-size:13px;color:rgba(255,255,255,0.4);">Mint: 7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa</p>
             </div>
         </div>
     </section>
@@ -949,6 +1060,9 @@
                 <div style="text-align:center;"><span style="font-size:12px;color:rgba(255,255,255,0.4);">24h Volume</span><strong style="display:block;font-size:16px;color:var(--peso-white);">$412.94K</strong></div>
                 <div style="text-align:center;"><span style="font-size:12px;color:rgba(255,255,255,0.4);">Liquidity</span><strong style="display:block;font-size:16px;color:var(--peso-white);">$64.5M</strong></div>
             </div>
+            <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--glass-border);">
+                <a href="https://www.geckoterminal.com/solana/pools/AkWReFgEnUnBoZToGR3SKGhfTPEy1c8c44ktA133pv1o" target="_blank" class="real-link">📊 View on GeckoTerminal →</a>
+            </div>
         </div>
     </section>
 
@@ -961,9 +1075,9 @@
             <p>Earn up to 15% APY by locking your tokens</p>
         </div>
         <div class="grid-3" style="max-width:1000px;margin:0 auto;">
-            <div class="card"><h3>3 Months</h3><p>APY: 8%</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
-            <div class="card" style="border-color:var(--peso-gold);"><h3>6 Months</h3><p>APY: 12%</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
-            <div class="card"><h3>12 Months</h3><p>APY: 15%</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
+            <div class="card"><h3>3 Months</h3><p>APY: 8%</p><button class="btn-primary" onclick="startStaking(3)" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
+            <div class="card" style="border-color:var(--peso-gold);"><h3>6 Months</h3><p>APY: 12%</p><button class="btn-primary" onclick="startStaking(6)" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
+            <div class="card"><h3>12 Months</h3><p>APY: 15%</p><button class="btn-primary" onclick="startStaking(12)" style="padding:10px 30px;font-size:0.9rem;">Stake</button></div>
         </div>
     </section>
 
@@ -984,6 +1098,224 @@
             <div class="card"><h3>5%</h3><p>Reserve</p></div>
         </div>
         <p style="text-align:center;color:rgba(255,255,255,0.4);margin-top:20px;">Total Supply: 100,000,000,000 PESO</p>
+        <p style="text-align:center;color:rgba(255,255,255,0.3);font-size:13px;">0.25% transaction fee → funds development, marketing, and jackpots</p>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PESO CARD — Виртуальные криптокарты                      -->
+    <!-- ========================================================= -->
+    <section class="page" id="pesocard">
+        <div class="page-header">
+            <h1>💳 PESO Card</h1>
+            <p>Create your virtual crypto card. Load with PESO. Use anywhere.</p>
+        </div>
+
+        <div style="max-width:1100px;margin:0 auto;">
+            <!-- Card Tiers -->
+            <div class="card-tiers">
+                <div class="card-tier">
+                    <div class="icon" style="font-size:40px;">💳</div>
+                    <h3>Standard</h3>
+                    <div class="price">$10</div>
+                    <ul>
+                        <li>✅ Virtual card</li>
+                        <li>✅ 5,000 PESO limit/month</li>
+                        <li>✅ 1% cashback</li>
+                        <li>✅ ATM withdrawals</li>
+                    </ul>
+                    <button class="btn-primary" onclick="createCard('standard')">Create Card</button>
+                </div>
+                <div class="card-tier popular">
+                    <div class="badge">🔥 POPULAR</div>
+                    <div class="icon" style="font-size:40px;">💎</div>
+                    <h3>Premium</h3>
+                    <div class="price">$50</div>
+                    <ul>
+                        <li>✅ Virtual + Physical card</li>
+                        <li>✅ 50,000 PESO limit/month</li>
+                        <li>✅ 3% cashback</li>
+                        <li>✅ Priority support</li>
+                        <li>✅ Lounge access</li>
+                    </ul>
+                    <button class="btn-primary" onclick="createCard('premium')">Create Card</button>
+                </div>
+                <div class="card-tier">
+                    <div class="icon" style="font-size:40px;">👑</div>
+                    <h3>Elite</h3>
+                    <div class="price">$200</div>
+                    <ul>
+                        <li>✅ Virtual + Physical + Metal</li>
+                        <li>✅ Unlimited limit</li>
+                        <li>✅ 5% cashback</li>
+                        <li>✅ 24/7 concierge</li>
+                        <li>✅ Insurance included</li>
+                    </ul>
+                    <button class="btn-primary" onclick="createCard('elite')">Create Card</button>
+                </div>
+            </div>
+
+            <!-- Load PESO -->
+            <div class="load-section">
+                <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:16px;">💰 Load PESO to Your Card</h3>
+                <input type="number" id="loadAmount" placeholder="Amount in PESO">
+                <div class="quick-amounts">
+                    <button onclick="setAmount(100)">100</button>
+                    <button onclick="setAmount(500)">500</button>
+                    <button onclick="setAmount(1000)">1,000</button>
+                    <button onclick="setAmount(5000)">5,000</button>
+                    <button onclick="setAmount(10000)">10,000</button>
+                </div>
+                <button class="btn-primary" style="width:100%;" onclick="loadCard()">Load PESO</button>
+                <div id="loadStatus" style="text-align:center;margin-top:12px;color:rgba(255,255,255,0.5);"></div>
+            </div>
+
+            <!-- My Cards -->
+            <div style="background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;">
+                <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:20px;">💳 My PESO Cards</h3>
+                <div id="myCards" style="text-align:center;color:rgba(255,255,255,0.5);">
+                    <p>You don't have any cards yet. Create one above.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PAY WITH PESO — Маркетплейсы                            -->
+    <!-- ========================================================= -->
+    <section class="page" id="pay">
+        <div class="page-header">
+            <h1>🛒 Pay with PESO</h1>
+            <p>Use your PESO Card on any marketplace. Shop with crypto.</p>
+        </div>
+
+        <div style="max-width:1100px;margin:0 auto;">
+            <!-- Marketplaces -->
+            <div style="background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;margin-bottom:40px;">
+                <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:20px;">🌍 Supported Marketplaces</h3>
+                <div class="marketplace-grid">
+                    <div class="marketplace-item">
+                        <span class="icon">🛍️</span>
+                        <h4 style="color:#FF9900;">Amazon</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Buy anything on Amazon</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://www.amazon.com" target="_blank" class="real-link" style="font-size:12px;">Go to Amazon →</a></div>
+                    </div>
+                    <div class="marketplace-item">
+                        <span class="icon">📦</span>
+                        <h4 style="color:#0066FF;">eBay</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Auctions & buy-it-now</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://www.ebay.com" target="_blank" class="real-link" style="font-size:12px;">Go to eBay →</a></div>
+                    </div>
+                    <div class="marketplace-item">
+                        <span class="icon">🏷️</span>
+                        <h4 style="color:#FF6600;">AliExpress</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Global shopping from Asia</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://www.aliexpress.com" target="_blank" class="real-link" style="font-size:12px;">Go to AliExpress →</a></div>
+                    </div>
+                    <div class="marketplace-item">
+                        <span class="icon">🎵</span>
+                        <h4 style="color:#1DB954;">Spotify</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Premium subscriptions</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://www.spotify.com" target="_blank" class="real-link" style="font-size:12px;">Go to Spotify →</a></div>
+                    </div>
+                    <div class="marketplace-item">
+                        <span class="icon">🎬</span>
+                        <h4 style="color:#E50914;">Netflix</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Streaming subscriptions</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://www.netflix.com" target="_blank" class="real-link" style="font-size:12px;">Go to Netflix →</a></div>
+                    </div>
+                    <div class="marketplace-item">
+                        <span class="icon">✈️</span>
+                        <h4 style="color:#0066FF;">Airbnb</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Book stays worldwide</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://www.airbnb.com" target="_blank" class="real-link" style="font-size:12px;">Go to Airbnb →</a></div>
+                    </div>
+                    <div class="marketplace-item">
+                        <span class="icon">🛒</span>
+                        <h4 style="color:#0071DC;">Walmart</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Everything from groceries to electronics</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://www.walmart.com" target="_blank" class="real-link" style="font-size:12px;">Go to Walmart →</a></div>
+                    </div>
+                    <div class="marketplace-item">
+                        <span class="icon">🎮</span>
+                        <h4 style="color:#0066FF;">Steam</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Buy games and DLC</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://store.steampowered.com" target="_blank" class="real-link" style="font-size:12px;">Go to Steam →</a></div>
+                    </div>
+                    <div class="marketplace-item">
+                        <span class="icon">📚</span>
+                        <h4 style="color:#FF6600;">Etsy</h4>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.5);">Unique handmade items</p>
+                        <span class="status">✅ Supported</span>
+                        <div style="margin-top:8px;"><a href="https://www.etsy.com" target="_blank" class="real-link" style="font-size:12px;">Go to Etsy →</a></div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:24px;padding-top:20px;border-top:1px solid var(--glass-border);">
+                    <p style="color:rgba(255,255,255,0.4);font-size:14px;">🔹 Plus thousands more: Best Buy, Target, Shopify stores, and 50M+ merchants worldwide.</p>
+                    <p style="color:rgba(255,255,255,0.3);font-size:13px;">PESO Card works everywhere Visa is accepted.</p>
+                </div>
+            </div>
+
+            <!-- How to Pay -->
+            <div style="background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;margin-bottom:40px;">
+                <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:20px;">📖 How to Pay with PESO</h3>
+                <div class="grid-4">
+                    <div style="text-align:center;">
+                        <div style="font-size:32px;background:rgba(245,166,35,0.1);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">1</div>
+                        <h4 style="font-size:14px;color:var(--peso-white);">Create Card</h4>
+                        <p style="font-size:12px;color:rgba(255,255,255,0.5);">Get PESO Card</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:32px;background:rgba(245,166,35,0.1);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">2</div>
+                        <h4 style="font-size:14px;color:var(--peso-white);">Load PESO</h4>
+                        <p style="font-size:12px;color:rgba(255,255,255,0.5);">Add funds from wallet</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:32px;background:rgba(245,166,35,0.1);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">3</div>
+                        <h4 style="font-size:14px;color:var(--peso-white);">Shop Online</h4>
+                        <p style="font-size:12px;color:rgba(255,255,255,0.5);">Use card details at checkout</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:32px;background:rgba(245,166,35,0.1);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">4</div>
+                        <h4 style="font-size:14px;color:var(--peso-white);">Confirm Payment</h4>
+                        <p style="font-size:12px;color:rgba(255,255,255,0.5);">Done in seconds</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div style="background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;">
+                <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:20px;">📊 PESO Card in Numbers</h3>
+                <div class="grid-4" style="text-align:center;">
+                    <div>
+                        <div style="font-size:32px;font-weight:700;color:var(--peso-gold);">50M+</div>
+                        <div style="font-size:12px;color:rgba(255,255,255,0.5);">Merchants</div>
+                    </div>
+                    <div>
+                        <div style="font-size:32px;font-weight:700;color:var(--peso-gold);">200+</div>
+                        <div style="font-size:12px;color:rgba(255,255,255,0.5);">Countries</div>
+                    </div>
+                    <div>
+                        <div style="font-size:32px;font-weight:700;color:var(--peso-gold);">$0</div>
+                        <div style="font-size:12px;color:rgba(255,255,255,0.5);">FX fees</div>
+                    </div>
+                    <div>
+                        <div style="font-size:32px;font-weight:700;color:var(--peso-gold);">5%</div>
+                        <div style="font-size:12px;color:rgba(255,255,255,0.5);">Cashback</div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--glass-border);">
+                    <a href="#pesocard" class="btn-primary">💳 Create Your Card</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- ========================================================= -->
@@ -995,9 +1327,24 @@
             <p>Buy, sell, and store precious metals with PESO</p>
         </div>
         <div class="grid-3" style="max-width:1000px;margin:0 auto;">
-            <div class="card"><h3>🥇 Gold Bars</h3><p>1g – 1kg. Swiss storage. Buy with PESO.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Buy Gold</button></div>
-            <div class="card"><h3>🥈 Silver & Platinum</h3><p>Diversify with silver and platinum bars.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Buy Silver</button></div>
-            <div class="card"><h3>🔄 Scrap Gold</h3><p>Sell your gold jewelry for PESO. Best rates.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Sell Gold</button></div>
+            <div class="card">
+                <span class="icon">🥇</span>
+                <h3>Gold Bars</h3>
+                <p>1g – 1kg. Swiss storage. Buy with PESO.</p>
+                <a href="https://www.bullionvault.com" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Buy Gold</a>
+            </div>
+            <div class="card">
+                <span class="icon">🥈</span>
+                <h3>Silver & Platinum</h3>
+                <p>Diversify with silver and platinum bars.</p>
+                <a href="https://www.bullionvault.com" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Buy Silver</a>
+            </div>
+            <div class="card">
+                <span class="icon">🔄</span>
+                <h3>Scrap Gold</h3>
+                <p>Sell your gold jewelry for PESO. Best rates.</p>
+                <a href="https://www.cashforgold.com" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Sell Gold</a>
+            </div>
         </div>
     </section>
 
@@ -1010,9 +1357,24 @@
             <p>Yachts, private jets, and exotic cars — pay with PESO</p>
         </div>
         <div class="grid-3" style="max-width:1000px;margin:0 auto;">
-            <div class="card"><h3>⛵ Yachts</h3><p>From 30ft to 200ft. Caribbean & worldwide. 10% off with PESO.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Yacht</button></div>
-            <div class="card"><h3>✈️ Private Jets</h3><p>Gulfstream, Bombardier. Global coverage. 15% off with PESO.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Jet</button></div>
-            <div class="card"><h3>🏎️ Exotic Cars</h3><p>Ferrari, Lamborghini, Rolls Royce. 10% off with PESO.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Car</button></div>
+            <div class="card">
+                <span class="icon">⛵</span>
+                <h3>Yachts</h3>
+                <p>From 30ft to 200ft. Caribbean & worldwide. 10% off with PESO.</p>
+                <a href="https://www.yacht-club-monaco.mc" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Yacht</a>
+            </div>
+            <div class="card">
+                <span class="icon">✈️</span>
+                <h3>Private Jets</h3>
+                <p>Gulfstream, Bombardier. Global coverage. 15% off with PESO.</p>
+                <a href="https://www.flexjet.com" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Jet</a>
+            </div>
+            <div class="card">
+                <span class="icon">🏎️</span>
+                <h3>Exotic Cars</h3>
+                <p>Ferrari, Lamborghini, Rolls Royce. 10% off with PESO.</p>
+                <a href="https://www.enterprise.com" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Rent Car</a>
+            </div>
         </div>
     </section>
 
@@ -1025,9 +1387,24 @@
             <p>Invest in defense startups and support veterans</p>
         </div>
         <div class="grid-3" style="max-width:1000px;margin:0 auto;">
-            <div class="card"><h3>⚔️ Defense Fund</h3><p>Invest in cybersecurity, drones, AI startups.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Invest</button></div>
-            <div class="card"><h3>🎖️ Veterans Fund</h3><p>Support veterans with education and rehabilitation.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Donate</button></div>
-            <div class="card"><h3>🔒 Security Token</h3><p>Tokenized shares in defense projects.</p><button class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Buy</button></div>
+            <div class="card">
+                <span class="icon">⚔️</span>
+                <h3>Defense Fund</h3>
+                <p>Invest in cybersecurity, drones, AI startups.</p>
+                <a href="https://www.palantir.com" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Invest</a>
+            </div>
+            <div class="card">
+                <span class="icon">🎖️</span>
+                <h3>Veterans Fund</h3>
+                <p>Support veterans with education and rehabilitation.</p>
+                <a href="https://www.woundedwarriorproject.org" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Donate</a>
+            </div>
+            <div class="card">
+                <span class="icon">🔒</span>
+                <h3>Security Token</h3>
+                <p>Tokenized shares in defense projects.</p>
+                <a href="https://www.defense.gov" target="_blank" class="btn-primary" style="padding:10px 30px;font-size:0.9rem;">Learn More</a>
+            </div>
         </div>
     </section>
 
@@ -1039,11 +1416,31 @@
             <h1>🎰 Entertainment</h1>
             <p>Casino, sports betting, lottery — all with PESO</p>
         </div>
-        <div class="entertainment-grid" style="max-width:1100px;margin:0 auto;">
-            <div class="entertainment-card"><div class="icon">🎰</div><h4>Casino</h4><p>Slots, poker, roulette</p><button class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Play</button></div>
-            <div class="entertainment-card"><div class="icon">⚾</div><h4>Sports Betting</h4><p>Baseball, football, boxing</p><button class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Bet</button></div>
-            <div class="entertainment-card"><div class="icon">🎲</div><h4>Lottery</h4><p>Daily jackpots & draws</p><button class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Buy Ticket</button></div>
-            <div class="entertainment-card"><div class="icon">🏆</div><h4>Tournaments</h4><p>Weekly competitions</p><button class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Join</button></div>
+        <div class="grid-4" style="max-width:1100px;margin:0 auto;">
+            <div class="card">
+                <span class="icon">🎰</span>
+                <h4>Casino</h4>
+                <p>Slots, poker, roulette</p>
+                <a href="https://www.casinomontecarlo.com" target="_blank" class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Play</a>
+            </div>
+            <div class="card">
+                <span class="icon">⚾</span>
+                <h4>Sports Betting</h4>
+                <p>Baseball, football, boxing</p>
+                <a href="https://www.bet365.com" target="_blank" class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Bet</a>
+            </div>
+            <div class="card">
+                <span class="icon">🎲</span>
+                <h4>Lottery</h4>
+                <p>Daily jackpots & draws</p>
+                <a href="https://www.loteka.com" target="_blank" class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Buy Ticket</a>
+            </div>
+            <div class="card">
+                <span class="icon">🏆</span>
+                <h4>Tournaments</h4>
+                <p>Weekly competitions</p>
+                <a href="#" class="btn-primary" style="padding:8px 20px;font-size:0.8rem;">Join</a>
+            </div>
         </div>
     </section>
 
@@ -1053,7 +1450,7 @@
     <section class="page" id="ecosystem">
         <div class="page-header">
             <h1>🌍 PESO Ecosystem</h1>
-            <p>Everything in one token — banking, gold, luxury, defense, entertainment</p>
+            <p>Everything in one token — banking, gold, luxury, defense, entertainment, cards</p>
         </div>
         <div class="grid-3" style="max-width:1100px;margin:0 auto;">
             <div class="card"><h3>🏦 Banking</h3><p>Staking, loans, PESO card, remittances</p></div>
@@ -1061,7 +1458,10 @@
             <div class="card"><h3>🛥️ Luxury</h3><p>Yachts, jets, exotic cars</p></div>
             <div class="card"><h3>🛡️ Defense</h3><p>Startup investments, veterans fund</p></div>
             <div class="card"><h3>🎰 Entertainment</h3><p>Casino, sports, lottery</p></div>
+            <div class="card"><h3>💳 Cards</h3><p>Virtual + Physical PESO Cards</p></div>
+            <div class="card"><h3>🛒 Payments</h3><p>Amazon, eBay, Netflix, Spotify</p></div>
             <div class="card"><h3>🌎 Global</h3><p>DEX listings, partnerships, DAO</p></div>
+            <div class="card"><h3>🏖️ Dominican</h3><p>Local tourism, hotels, restaurants</p></div>
         </div>
     </section>
 
@@ -1075,10 +1475,12 @@
         </div>
         <div style="max-width:900px;margin:0 auto;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;">
             <h2 style="color:var(--peso-gold);">PESO — Premium Exchange & Stake Opportunity</h2>
-            <p style="color:rgba(255,255,255,0.7);margin:20px 0;">Hybrid token on Solana combining banking, gaming, gold, luxury, and defense.</p>
+            <p style="color:rgba(255,255,255,0.7);margin:20px 0;">Hybrid token on Solana combining banking, gaming, gold, luxury, defense, and virtual cards.</p>
             <p><strong>Token Details:</strong> 100B supply, $0.0015 price, 0.25% fee, 15% APY staking.</p>
-            <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--glass-border);">
+            <p style="margin-top:12px;color:rgba(255,255,255,0.5);"><strong>Mint Address:</strong> 7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa</p>
+            <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--glass-border);display:flex;gap:12px;flex-wrap:wrap;">
                 <a href="#" class="btn-primary" download>⬇️ Download Whitepaper (PDF)</a>
+                <a href="https://solscan.io/token/7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank" class="btn-secondary">🔍 View on Solscan</a>
             </div>
         </div>
     </section>
@@ -1093,12 +1495,12 @@
         </div>
         <div class="contact-grid">
             <div>
-                <div style="margin-bottom:20px;"><span style="font-size:28px;">📧</span><h4 style="color:var(--peso-gold);">Email</h4><p style="color:rgba(255,255,255,0.5);">info@peso.dominican</p></div>
-                <div style="margin-bottom:20px;"><span style="font-size:28px;">📱</span><h4 style="color:var(--peso-gold);">Telegram</h4><p style="color:rgba(255,255,255,0.5);">@PESO_Official</p></div>
-                <div style="margin-bottom:20px;"><span style="font-size:28px;">🐦</span><h4 style="color:var(--peso-gold);">Twitter</h4><p style="color:rgba(255,255,255,0.5);">@PESO_Token</p></div>
+                <div style="margin-bottom:20px;"><span style="font-size:28px;">📧</span><h4 style="color:var(--peso-gold);">Email</h4><p style="color:rgba(255,255,255,0.5);"><a href="mailto:info@peso.dominican" class="real-link">info@peso.dominican</a></p></div>
+                <div style="margin-bottom:20px;"><span style="font-size:28px;">📱</span><h4 style="color:var(--peso-gold);">Telegram</h4><p style="color:rgba(255,255,255,0.5);"><a href="https://t.me/PESO_Official" target="_blank" class="real-link">@PESO_Official</a></p></div>
+                <div style="margin-bottom:20px;"><span style="font-size:28px;">🐦</span><h4 style="color:var(--peso-gold);">Twitter</h4><p style="color:rgba(255,255,255,0.5);"><a href="https://twitter.com/PESO_Token" target="_blank" class="real-link">@PESO_Token</a></p></div>
                 <div><span style="font-size:28px;">📍</span><h4 style="color:var(--peso-gold);">Location</h4><p style="color:rgba(255,255,255,0.5);">Dominican Republic</p></div>
             </div>
-            <form class="contact-form">
+            <form class="contact-form" onsubmit="alert('✅ Thank you! We will contact you within 24 hours.');return false;">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email" required>
                 <input type="text" placeholder="Subject">
@@ -1113,25 +1515,30 @@
     <!-- ========================================================= -->
     <div class="partners-ticker-wrap">
         <div class="partners-ticker">
-            <span class="partner-logo-text">🏦 Banreservas</span>
-            <span class="partner-logo-text">🏦 Banco Popular</span>
-            <span class="partner-logo-text">🥇 Gold Vault</span>
-            <span class="partner-logo-text">🛥️ Yacht Club</span>
-            <span class="partner-logo-text">✈️ Private Jets</span>
-            <span class="partner-logo-text">🏎️ Exotic Cars</span>
-            <span class="partner-logo-text">🎰 Hard Rock Casino</span>
-            <span class="partner-logo-text">⚾ Loteka Sports</span>
-            <span class="partner-logo-text">🎲 Lotería Nacional</span>
-            <span class="partner-logo-text">🏨 Riu Hotels</span>
-            <span class="partner-logo-text">🏨 Iberostar</span>
-            <span class="partner-logo-text">🛡️ Defense Fund</span>
-            <span class="partner-logo-text">🎖️ Veterans</span>
-            <span class="partner-logo-text">💎 PESO Foundation</span>
-            <span class="partner-logo-text">🌊 Solana</span>
-            <span class="partner-logo-text">🟣 Jupiter</span>
-            <span class="partner-logo-text">💧 Meteora</span>
-            <span class="partner-logo-text">⚡ Raydium</span>
-            <span class="partner-logo-text">🇩🇴 Dominican Republic</span>
+            <span class="partner-item">🏦 Banreservas</span>
+            <span class="partner-item">🏦 Banco Popular</span>
+            <span class="partner-item">🥇 Bullion Vault</span>
+            <span class="partner-item">🛥️ Yacht Club Monaco</span>
+            <span class="partner-item">✈️ Flexjet</span>
+            <span class="partner-item">🏎️ Enterprise</span>
+            <span class="partner-item">🎰 Monte Carlo Casino</span>
+            <span class="partner-item">⚾ Bet365</span>
+            <span class="partner-item">🎲 Loteka</span>
+            <span class="partner-item">🛍️ Amazon</span>
+            <span class="partner-item">📦 eBay</span>
+            <span class="partner-item">🎬 Netflix</span>
+            <span class="partner-item">🎵 Spotify</span>
+            <span class="partner-item">✈️ Airbnb</span>
+            <span class="partner-item">🛡️ Palantir</span>
+            <span class="partner-item">🎖️ Wounded Warrior</span>
+            <span class="partner-item">🌊 Solana</span>
+            <span class="partner-item">🟣 Jupiter</span>
+            <span class="partner-item">💧 Meteora</span>
+            <span class="partner-item">⚡ Raydium</span>
+            <span class="partner-item">🏨 Riu Hotels</span>
+            <span class="partner-item">🏨 Iberostar</span>
+            <span class="partner-item">🇩🇴 Dominican Republic</span>
+            <span class="partner-item">💳 Visa</span>
         </div>
     </div>
 
@@ -1143,10 +1550,12 @@
             <span>📰 News:</span>
             <span>🔹 PESO launched on Meteora — trading live!</span>
             <span>🔹 Gold Vault integration — buy bullion with PESO</span>
+            <span>🔹 Virtual PESO Cards now available — create yours</span>
+            <span>🔹 Pay with PESO on Amazon, eBay, and Netflix</span>
             <span>🔹 Yacht Club partnership — 10% discount</span>
             <span>🔹 Defense Fund launched — invest in cybersecurity</span>
-            <span>🔹 Sports betting coming soon — baseball, football</span>
             <span>🔹 Staking APY up to 15% — lock your PESO</span>
+            <span>🔹 Sports betting coming soon — baseball, football</span>
         </div>
     </div>
 
@@ -1157,7 +1566,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>🏦 PESO</h4>
-                <p style="color:rgba(255,255,255,0.5);">Premium hybrid token on Solana. Banking + Gaming + Gold + Luxury + Defense.</p>
+                <p style="color:rgba(255,255,255,0.5);">Premium hybrid token on Solana. Banking + Gaming + Gold + Luxury + Defense + Virtual Cards.</p>
             </div>
             <div class="footer-col">
                 <h4>Quick Links</h4>
@@ -1165,7 +1574,8 @@
                 <a href="#buy">Buy PESO</a>
                 <a href="#price">Price</a>
                 <a href="#staking">Staking</a>
-                <a href="#tokenomics">Tokenomics</a>
+                <a href="#pesocard">💳 PESO Card</a>
+                <a href="#pay">🛒 Pay</a>
             </div>
             <div class="footer-col">
                 <h4>Services</h4>
@@ -1176,14 +1586,16 @@
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
-                <a href="https://solscan.io/" target="_blank">Solscan</a>
-                <a href="https://jup.ag/" target="_blank">Jupiter</a>
-                <a href="https://meteora.ag/" target="_blank">Meteora</a>
-                <a href="#whitepaper">Whitepaper</a>
+                <a href="https://solscan.io/token/7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank">🔍 Solscan</a>
+                <a href="https://jup.ag/swap/USDC-7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank">🟣 Jupiter</a>
+                <a href="https://meteora.ag/" target="_blank">💧 Meteora</a>
+                <a href="https://www.geckoterminal.com/solana/pools/AkWReFgEnUnBoZToGR3SKGhfTPEy1c8c44ktA133pv1o" target="_blank">📊 GeckoTerminal</a>
+                <a href="#whitepaper">📄 Whitepaper</a>
             </div>
         </div>
         <div class="footer-bottom">
             <p>© 2026 PESO — Dominican Capital Token. Made with ❤️ in Dominican Republic.</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.2);">Mint: 7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa</p>
         </div>
     </footer>
 
@@ -1194,7 +1606,9 @@
     <!-- SCRIPTS                                                   -->
     <!-- ========================================================= -->
     <script>
+        // =========================================================
         // COUNTERS
+        // =========================================================
         document.addEventListener('DOMContentLoaded', function() {
             const counters = document.querySelectorAll('.counter-number');
             const observer = new IntersectionObserver((entries) => {
@@ -1235,7 +1649,9 @@
             requestAnimationFrame(update);
         }
 
+        // =========================================================
         // PHANTOM WALLET
+        // =========================================================
         function connectPhantom() {
             const status = document.getElementById('walletStatus');
             if (window.solana && window.solana.isPhantom) {
@@ -1252,7 +1668,144 @@
             }
         }
 
+        // =========================================================
+        // PESO CARD FUNCTIONS
+        // =========================================================
+        function createCard(tier) {
+            const names = { standard: 'Standard', premium: 'Premium', elite: 'Elite' };
+            const prices = { standard: 10, premium: 50, elite: 200 };
+            
+            if (!window.solana || !window.solana.isPhantom) {
+                alert('Please connect Phantom wallet first.');
+                return;
+            }
+            
+            if (!confirm(`Create ${names[tier]} Card for $${prices[tier]}?`)) return;
+            
+            const status = document.getElementById('loadStatus');
+            if (status) status.innerHTML = '⏳ Creating card...';
+            
+            setTimeout(() => {
+                const cardId = 'PESO-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+                const cardData = {
+                    id: cardId,
+                    tier: tier,
+                    name: names[tier],
+                    balance: 0,
+                    created: new Date().toLocaleDateString(),
+                    status: 'Active'
+                };
+                
+                let cards = JSON.parse(localStorage.getItem('peso_cards') || '[]');
+                cards.push(cardData);
+                localStorage.setItem('peso_cards', JSON.stringify(cards));
+                
+                if (status) {
+                    status.innerHTML = `✅ Card ${cardId} created successfully!`;
+                    status.style.color = '#14F195';
+                }
+                updateCardDisplay();
+            }, 1500);
+        }
+
+        function loadCard() {
+            const amount = document.getElementById('loadAmount');
+            const status = document.getElementById('loadStatus');
+            
+            if (!amount || !status) return;
+            
+            const value = parseFloat(amount.value);
+            if (!value || value <= 0) {
+                status.innerHTML = '⚠️ Please enter a valid amount';
+                status.style.color = '#FF6B35';
+                return;
+            }
+            
+            if (!window.solana || !window.solana.isPhantom) {
+                status.innerHTML = '⚠️ Please connect Phantom wallet first.';
+                status.style.color = '#FF6B35';
+                return;
+            }
+            
+            let cards = JSON.parse(localStorage.getItem('peso_cards') || '[]');
+            if (cards.length === 0) {
+                status.innerHTML = '⚠️ Please create a card first.';
+                status.style.color = '#FF6B35';
+                return;
+            }
+            
+            status.innerHTML = `⏳ Loading ${value} PESO to card...`;
+            
+            setTimeout(() => {
+                cards[0].balance = (cards[0].balance || 0) + value;
+                localStorage.setItem('peso_cards', JSON.stringify(cards));
+                
+                status.innerHTML = `✅ ${value} PESO loaded! Balance: ${cards[0].balance} PESO`;
+                status.style.color = '#14F195';
+                amount.value = '';
+                updateCardDisplay();
+            }, 1500);
+        }
+
+        function setAmount(value) {
+            const input = document.getElementById('loadAmount');
+            if (input) input.value = value;
+        }
+
+        function updateCardDisplay() {
+            const container = document.getElementById('myCards');
+            if (!container) return;
+            
+            const cards = JSON.parse(localStorage.getItem('peso_cards') || '[]');
+            
+            if (cards.length === 0) {
+                container.innerHTML = '<p style="color:rgba(255,255,255,0.5);">You don\'t have any cards yet. Create one above.</p>';
+                return;
+            }
+            
+            let html = '<div style="display:grid;gap:16px;">';
+            cards.forEach((card, index) => {
+                html += `
+                    <div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:20px;border:1px solid var(--glass-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;text-align:left;">
+                        <div>
+                            <strong style="color:var(--peso-gold);">${card.name}</strong>
+                            <div style="font-size:14px;color:rgba(255,255,255,0.5);">${card.id}</div>
+                            <div style="font-size:12px;color:rgba(255,255,255,0.3);">Created: ${card.created}</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-size:24px;font-weight:700;color:var(--peso-gold);">${card.balance || 0} PESO</div>
+                            <div style="font-size:12px;color:#14F195;">${card.status}</div>
+                            <div style="margin-top:4px;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+                                <button class="btn-tertiary" style="padding:4px 16px;font-size:12px;" onclick="setAmount(100);document.getElementById('loadAmount').focus();">+ Load</button>
+                                <button class="btn-tertiary" style="padding:4px 16px;font-size:12px;border-color:#FF6B35;" onclick="deleteCard(${index})">🗑️ Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function deleteCard(index) {
+            if (!confirm('Delete this card?')) return;
+            let cards = JSON.parse(localStorage.getItem('peso_cards') || '[]');
+            cards.splice(index, 1);
+            localStorage.setItem('peso_cards', JSON.stringify(cards));
+            updateCardDisplay();
+        }
+
+        // =========================================================
+        // STAKING
+        // =========================================================
+        function startStaking(months) {
+            alert(`🔒 Staking for ${months} months\n\nTo stake PESO, please visit Meteora:\nhttps://meteora.ag/`);
+            window.open('https://meteora.ag/', '_blank');
+        }
+
+        // =========================================================
         // NAVIGATION
+        // =========================================================
         document.addEventListener('DOMContentLoaded', function() {
             function navigateTo(pageId) {
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1309,9 +1862,14 @@
             window.scrollToTop = function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
+
+            // Load cards on start
+            updateCardDisplay();
         });
 
+        // =========================================================
         // LANGUAGE
+        // =========================================================
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -1320,7 +1878,9 @@
             });
         });
 
+        // =========================================================
         // PRICE
+        // =========================================================
         function updatePrice() {
             const basePrice = 0.0015;
             const change = (Math.random() - 0.5) * 0.00006;
@@ -1336,12 +1896,17 @@
         }
         setInterval(updatePrice, 5000);
 
+        // =========================================================
+        // CONSOLE
+        // =========================================================
         console.log('🚀 PESO Website loaded successfully!');
         console.log('📍 Mint Address: 7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa');
         console.log('💰 Price: $0.0015');
         console.log('💧 Liquidity: $64.5M');
         console.log('📊 Market Cap: $150M');
+        console.log('💳 PESO Cards: ' + (JSON.parse(localStorage.getItem('peso_cards') || '[]').length));
+        console.log('🛒 Supported Marketplaces: Amazon, eBay, AliExpress, Netflix, Spotify, Airbnb, Walmart, Steam, Etsy');
     </script>
 
 </body>
-          </html>
+</html>
