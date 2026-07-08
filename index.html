@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PESO — Dominican Capital Token | Premium Hybrid on Solana</title>
+    <title>PESO — Dominican Capital Token | Premium</title>
     
-    <meta name="description" content="PESO is a premium hybrid token on Solana combining banking, gaming, gold, luxury, defense, and PESO Card. 100B supply, 0.25% fee.">
-    <meta name="keywords" content="PESO, Dominican token, Solana, buy crypto, Phantom wallet, casino, gold, yachts, defense, virtual card">
+    <meta name="description" content="PESO is a premium hybrid token on Solana combining banking, gaming, gold, luxury, defense, and PESO Card.">
+    <meta name="keywords" content="PESO, Dominican token, Solana, buy crypto, Phantom wallet, casino, gold, yachts">
     <meta name="author" content="PESO Team">
     <meta name="robots" content="index, follow">
     
@@ -27,8 +27,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
+        /* ============================================================
+           ROOT VARIABLES — ПРЕМИУМ ТЕМА
+           ============================================================ */
         :root {
             --peso-gold: #F5A623;
+            --peso-gold-dark: #C9911A;
+            --peso-gold-light: #F5D98E;
             --peso-sunset: #FF6B35;
             --peso-ocean: #1A8FE3;
             --peso-sand: #F5E6D3;
@@ -55,6 +60,9 @@
         ::-webkit-scrollbar-thumb { background: var(--peso-gold); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--peso-sunset); }
 
+        /* ============================================================
+           VIDEO BACKGROUND
+           ============================================================ */
         .video-background {
             position: fixed;
             top: 0;
@@ -94,6 +102,38 @@
             50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
+        /* ============================================================
+           GOLD PARTICLES OVERLAY
+           ============================================================ */
+        .gold-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--peso-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--peso-gold), 0 0 20px var(--peso-gold);
+            animation: particleFloat linear infinite;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        /* ============================================================
+           TICKER
+           ============================================================ */
         .ticker-wrap {
             position: fixed;
             top: 0;
@@ -129,11 +169,15 @@
             font-size: 10px;
         }
         .ticker span:last-child::after { display: none; }
+        .ticker span.gold { color: var(--peso-gold); }
         @keyframes tickerScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
+        /* ============================================================
+           LANGUAGE SELECTOR
+           ============================================================ */
         .language-selector {
             position: fixed;
             top: 48px;
@@ -161,6 +205,9 @@
         .lang-btn:hover { color: var(--peso-white); background: rgba(255,255,255,0.05); }
         .lang-btn.active { color: var(--peso-gold); background: rgba(245,166,35,0.15); }
 
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
         .navbar {
             position: fixed;
             top: 40px;
@@ -204,7 +251,7 @@
             font-size: 11px;
             font-weight: 500;
             color: rgba(255,255,255,0.6);
-            transition: color 0.3s;
+            transition: all 0.3s;
             position: relative;
             cursor: pointer;
         }
@@ -229,6 +276,9 @@
             cursor: pointer;
         }
 
+        /* ============================================================
+           PAGES
+           ============================================================ */
         .page {
             display: none;
             padding: 80px 20px 40px;
@@ -247,6 +297,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 42px;
             color: var(--peso-gold);
+            text-shadow: 0 0 40px rgba(245,166,35,0.2);
         }
         .page-header p {
             font-size: 18px;
@@ -254,6 +305,9 @@
             margin-top: 10px;
         }
 
+        /* ============================================================
+           HERO
+           ============================================================ */
         .hero {
             position: relative;
             z-index: 2;
@@ -277,6 +331,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(245,166,35,0.3);
         }
         .hero-title {
             font-family: 'Playfair Display', serif;
@@ -285,11 +340,12 @@
             line-height: 1.1;
         }
         .title-gold {
-            background: linear-gradient(135deg, var(--peso-gold), #F5D98E, var(--peso-gold));
+            background: linear-gradient(135deg, var(--peso-gold), var(--peso-gold-light), var(--peso-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% 200%;
             animation: shimmer 3s ease-in-out infinite;
+            text-shadow: 0 0 60px rgba(245,166,35,0.15);
         }
         @keyframes shimmer {
             0%, 100% { background-position: 0% 50%; }
@@ -314,7 +370,20 @@
             margin: 30px 0;
             flex-wrap: wrap;
         }
-        .hero-stat { text-align: center; }
+        .hero-stat {
+            text-align: center;
+            padding: 12px 24px;
+            background: var(--glass);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .hero-stat:hover {
+            border-color: var(--peso-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(245,166,35,0.1);
+        }
         .hero-stat .stat-value {
             display: block;
             font-size: 28px;
@@ -343,8 +412,9 @@
             transition: all 0.3s;
             cursor: pointer;
             border: none;
+            box-shadow: 0 4px 20px rgba(245,166,35,0.3);
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245,166,35,0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(245,166,35,0.5); }
         .btn-secondary {
             display: inline-flex;
             align-items: center;
@@ -429,6 +499,9 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* ============================================================
+           COUNTERS
+           ============================================================ */
         .counters-section {
             position: relative;
             z-index: 2;
@@ -444,6 +517,7 @@
             font-size: 36px;
             font-family: 'Playfair Display', serif;
             color: var(--peso-gold);
+            text-shadow: 0 0 30px rgba(245,166,35,0.15);
         }
         .section-header p {
             font-size: 18px;
@@ -464,7 +538,11 @@
             text-align: center;
             transition: all 0.4s;
         }
-        .counter-item:hover { transform: translateY(-6px); border-color: var(--peso-gold); }
+        .counter-item:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--peso-gold);
+            box-shadow: 0 10px 40px rgba(245,166,35,0.1);
+        }
         .counter-icon { font-size: 28px; margin-bottom: 10px; }
         .counter-number {
             font-family: 'Playfair Display', serif;
@@ -472,6 +550,7 @@
             font-weight: 700;
             color: var(--peso-gold);
             line-height: 1.2;
+            text-shadow: 0 0 20px rgba(245,166,35,0.1);
         }
         .counter-label {
             font-size: 13px;
@@ -487,6 +566,9 @@
             margin-top: 4px;
         }
 
+        /* ============================================================
+           CARDS
+           ============================================================ */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -505,16 +587,34 @@
             padding: 28px 20px;
             text-align: center;
             transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
         }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,166,35,0.03), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        .card:hover::before { opacity: 1; }
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.01);
             border-color: var(--peso-gold);
-            box-shadow: 0 10px 40px rgba(245,166,35,0.1);
+            box-shadow: 0 10px 50px rgba(245,166,35,0.12);
         }
         .card h3 { color: var(--peso-gold); margin-bottom: 12px; font-size: 1.5rem; }
         .card p { color: #bbb; font-size: 0.95rem; }
         .card .icon { font-size: 40px; margin-bottom: 12px; display: block; }
 
+        /* ============================================================
+           PARTNERS TICKER
+           ============================================================ */
         .partners-ticker-wrap {
             position: relative;
             z-index: 2;
@@ -548,12 +648,16 @@
         .partners-ticker .partner-item:hover {
             color: var(--peso-white);
             transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(245,166,35,0.3);
         }
         @keyframes partnersScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
+        /* ============================================================
+           MARKETPLACE
+           ============================================================ */
         .marketplace-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -568,7 +672,11 @@
             text-align: center;
             transition: all 0.3s;
         }
-        .marketplace-item:hover { transform: translateY(-4px); border-color: var(--peso-gold); }
+        .marketplace-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--peso-gold);
+            box-shadow: 0 10px 30px rgba(245,166,35,0.08);
+        }
         .marketplace-item .icon { font-size: 40px; display: block; margin-bottom: 8px; }
         .marketplace-item .status {
             display: inline-block;
@@ -588,6 +696,275 @@
         }
         .real-link:hover { color: var(--peso-white); }
 
+        /* ============================================================
+           PESO CARD — СУПЕР-ПРЕМИУМ
+           ============================================================ */
+        .card-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card-premium {
+            position: relative;
+            background: linear-gradient(145deg, #0A1A2B, #1A2A4A);
+            border: 2px solid var(--peso-gold);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 30px 80px rgba(245,166,35,0.2), inset 0 0 80px rgba(245,166,35,0.05);
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+        .card-premium:hover {
+            box-shadow: 0 40px 100px rgba(245,166,35,0.3), inset 0 0 80px rgba(245,166,35,0.08);
+        }
+        .card-premium .bg-glow {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,166,35,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .card-premium .bg-glow-2 {
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,166,35,0.08), transparent 70%);
+            pointer-events: none;
+        }
+        .card-premium .gold-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--peso-gold), var(--peso-white), var(--peso-gold), transparent);
+        }
+        .card-premium .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        .card-premium .card-header .label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .card-premium .card-header .title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .card-premium .card-header .title span {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--peso-gold);
+            font-family: 'Playfair Display', serif;
+        }
+        .card-premium .card-header .title .badge {
+            background: rgba(245,166,35,0.15);
+            color: var(--peso-gold);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            border: 1px solid rgba(245,166,35,0.2);
+        }
+        .card-premium .card-header .blockchain {
+            text-align: right;
+        }
+        .card-premium .card-header .blockchain .label-sm {
+            font-size: 9px;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .card-premium .card-header .blockchain .value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--peso-white);
+            letter-spacing: 1px;
+            background: rgba(255,255,255,0.05);
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .card-premium .balance-section {
+            text-align: center;
+            padding: 24px 0;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            position: relative;
+            z-index: 2;
+        }
+        .card-premium .balance-section .label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .card-premium .balance-section .balance {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 8px;
+        }
+        .card-premium .balance-section .balance .amount {
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--peso-gold);
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 30px rgba(245,166,35,0.15);
+        }
+        .card-premium .balance-section .balance .currency {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.3);
+        }
+        .card-premium .balance-section .gold-line {
+            width: 80px;
+            height: 2px;
+            margin: 8px auto 0;
+            background: linear-gradient(90deg, transparent, var(--peso-gold), transparent);
+        }
+
+        .card-premium .info-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 14px 0;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+        .card-premium .info-row .item { text-align: center; }
+        .card-premium .info-row .item .label {
+            font-size: 9px;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .card-premium .info-row .item .value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--peso-white);
+        }
+        .card-premium .info-row .item .value.gold { color: var(--peso-gold); }
+        .card-premium .info-row .item .value.green { color: #14F195; }
+        .card-premium .info-row .divider {
+            width: 1px;
+            background: rgba(255,255,255,0.06);
+        }
+
+        .card-premium .address-row {
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 16px;
+            position: relative;
+            z-index: 2;
+        }
+        .card-premium .address-row .addr {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+        .card-premium .address-row .addr .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(245,166,35,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .card-premium .address-row .addr .text .label {
+            font-size: 8px;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .card-premium .address-row .addr .text .value {
+            font-family: monospace;
+            font-size: 11px;
+            color: var(--peso-white);
+            word-break: break-all;
+            max-width: 200px;
+        }
+        .card-premium .address-row .actions {
+            display: flex;
+            gap: 6px;
+        }
+        .card-premium .address-row .actions button {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.6);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .card-premium .address-row .actions button:hover {
+            border-color: var(--peso-gold);
+            color: var(--peso-gold);
+        }
+        .card-premium .address-row .actions button.danger {
+            background: rgba(255,107,53,0.1);
+            border: 1px solid rgba(255,107,53,0.2);
+            color: #FF6B35;
+        }
+        .card-premium .address-row .actions button.danger:hover {
+            border-color: #FF6B35;
+        }
+
+        .card-premium .btn-row {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        .card-premium .status-text {
+            text-align: center;
+            margin-top: 14px;
+            color: rgba(255,255,255,0.35);
+            font-size: 12px;
+            position: relative;
+            z-index: 2;
+        }
+        .card-premium .watermark {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 120px;
+            color: rgba(245,166,35,0.03);
+            font-family: 'Playfair Display', serif;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+           CONTACT
+           ============================================================ */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -604,12 +981,17 @@
             color: var(--peso-white);
             font-size: 15px;
             margin-bottom: 16px;
+            transition: border-color 0.3s;
         }
         .contact-form input:focus, .contact-form textarea:focus {
             border-color: var(--peso-gold);
             outline: none;
+            box-shadow: 0 0 20px rgba(245,166,35,0.05);
         }
 
+        /* ============================================================
+           NEWS TICKER
+           ============================================================ */
         .news-ticker {
             position: fixed;
             bottom: 0;
@@ -641,6 +1023,9 @@
             100% { transform: translateX(-50%); }
         }
 
+        /* ============================================================
+           FOOTER
+           ============================================================ */
         .footer {
             position: relative;
             z-index: 2;
@@ -679,6 +1064,9 @@
         }
         .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
 
+        /* ============================================================
+           SCROLL TOP
+           ============================================================ */
         .scroll-top {
             position: fixed;
             bottom: 50px;
@@ -695,10 +1083,14 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(245,166,35,0.3);
         }
         .scroll-top.visible { opacity: 1; visibility: visible; }
-        .scroll-top:hover { transform: scale(1.1); }
+        .scroll-top:hover { transform: scale(1.1); box-shadow: 0 8px 40px rgba(245,166,35,0.4); }
 
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
         @media (max-width: 1200px) {
             .hero { flex-direction: column; text-align: center; padding: 120px 30px 60px; }
             .hero-content { max-width: 100%; }
@@ -752,24 +1144,37 @@
             .partners-ticker-wrap { padding: 12px 0; }
             .partners-ticker { gap: 20px; animation-duration: 40s; }
             .partners-ticker .partner-item { font-size: 11px; padding: 0 10px; }
+            .card-premium { padding: 24px; }
+            .card-premium .balance-section .balance .amount { font-size: 36px; }
+            .card-premium .info-row { gap: 15px; }
+            .card-premium .info-row .item .value { font-size: 14px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- VIDEO BACKGROUND -->
+    <!-- ============================================================
+    VIDEO BACKGROUND
+    ============================================================ -->
     <div class="video-background">
         <video autoplay muted loop playsinline>
-            <source src="dominican-drone.mp4" type="video/mp4">
+            <source src="peso_hero_video.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
         <div class="video-glow"></div>
     </div>
 
-    <!-- TOP TICKER -->
+    <!-- ============================================================
+    GOLD PARTICLES
+    ============================================================ -->
+    <div class="gold-particles" id="goldParticles"></div>
+
+    <!-- ============================================================
+    TOP TICKER
+    ============================================================ -->
     <div class="ticker-wrap">
         <div class="ticker">
-            <span>💰 PESO — Dominican Capital Token</span>
+            <span class="gold">💰 PESO — Dominican Capital Token</span>
             <span>📈 Price: $0.0015</span>
             <span>🏆 Market Cap: $150M</span>
             <span>💧 Liquidity: $64.5M</span>
@@ -780,11 +1185,13 @@
             <span>🎰 Casinos & Sports</span>
             <span>💳 PESO Card</span>
             <span>🛒 Pay on Amazon</span>
-            <span>🇩🇴 Dominican Republic</span>
+            <span class="gold">🇩🇴 Dominican Republic</span>
         </div>
     </div>
 
-    <!-- LANGUAGE SELECTOR -->
+    <!-- ============================================================
+    LANGUAGE SELECTOR
+    ============================================================ -->
     <div class="language-selector">
         <button class="lang-btn active" data-lang="en">🇬🇧 EN</button>
         <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
@@ -796,7 +1203,9 @@
         <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
     </div>
 
-    <!-- NAVIGATION -->
+    <!-- ============================================================
+    NAVIGATION
+    ============================================================ -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">
@@ -823,9 +1232,9 @@
         </div>
     </nav>
 
-    <!-- ========================================================= -->
-    <!-- HOME                                                       -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- HOME                                                          -->
+    <!-- ============================================================ -->
     <section class="page active" id="home">
         <div class="hero">
             <div class="hero-content">
@@ -861,7 +1270,7 @@
             </div>
             <div class="hero-coin">
                 <div class="coin-3d">
-                    <img src="peso_logo.png" alt="PESO Coin" class="rotating-coin">
+                    <img src="peso_coin_3d.png" alt="PESO Coin" class="rotating-coin">
                     <div class="coin-glow"></div>
                     <div class="coin-ring"></div>
                     <div class="coin-ring-2"></div>
@@ -915,9 +1324,9 @@
         </section>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- BUY                                                        -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- BUY                                                           -->
+    <!-- ============================================================ -->
     <section class="page" id="buy">
         <div class="page-header">
             <h1>🟣 Buy PESO Instantly</h1>
@@ -937,9 +1346,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PRICE                                                      -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- PRICE                                                         -->
+    <!-- ============================================================ -->
     <section class="page" id="price">
         <div class="page-header">
             <h1>📊 Live PESO Price</h1>
@@ -962,9 +1371,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- STAKING                                                    -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- STAKING                                                       -->
+    <!-- ============================================================ -->
     <section class="page" id="staking">
         <div class="page-header">
             <h1>💰 PESO Staking</h1>
@@ -977,9 +1386,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- TOKENOMICS                                                 -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- TOKENOMICS                                                    -->
+    <!-- ============================================================ -->
     <section class="page" id="tokenomics">
         <div class="page-header">
             <h1>📊 Tokenomics</h1>
@@ -996,189 +1405,146 @@
         <p style="text-align:center;color:rgba(255,255,255,0.4);margin-top:20px;">Total Supply: 100,000,000,000 PESO</p>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PESO CARD — ПРЕМИАЛЬНАЯ ВЕРСИЯ                           -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- PESO CARD — СУПЕР-ПРЕМИУМ                                    -->
+    <!-- ============================================================ -->
     <section class="page" id="pesocard">
         <div class="page-header">
             <h1>💳 PESO Card</h1>
-            <p>Твой кошелёк в стиле PESO. Баланс в PESO и USD.</p>
+            <p>Your wallet in premium PESO style</p>
         </div>
 
-        <div style="max-width:800px;margin:0 auto;">
-            
-            <!-- КАРТА — ПРЕМИАЛЬНЫЙ ДИЗАЙН -->
-            <div style="position:relative;background:linear-gradient(145deg, #0A1A2B, #1A2A4A);border:2px solid var(--peso-gold);border-radius:30px;padding:40px;box-shadow:0 30px 80px rgba(245,166,35,0.2), inset 0 0 80px rgba(245,166,35,0.05);overflow:hidden;">
-                
-                <!-- Фоновые эффекты -->
-                <div style="position:absolute;top:-100px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,0.15),transparent 70%);pointer-events:none;"></div>
-                <div style="position:absolute;bottom:-150px;left:-150px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,0.08),transparent 70%);pointer-events:none;"></div>
-                
-                <!-- Золотая полоса сверху -->
-                <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--peso-gold),var(--peso-white),var(--peso-gold),transparent);"></div>
+        <div class="card-container">
+            <div class="card-premium">
+                <div class="bg-glow"></div>
+                <div class="bg-glow-2"></div>
+                <div class="gold-stripe"></div>
+                <div class="watermark">PESO</div>
 
-                <!-- Верх карты -->
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;position:relative;z-index:2;">
+                <div class="card-header">
                     <div>
-                        <div style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:3px;text-transform:uppercase;">PESO CARD</div>
-                        <div style="display:flex;align-items:center;gap:12px;margin-top:4px;">
-                            <span style="font-size:28px;font-weight:700;color:var(--peso-gold);font-family:'Playfair Display',serif;">PESO</span>
-                            <span style="background:rgba(245,166,35,0.15);color:var(--peso-gold);padding:2px 12px;border-radius:20px;font-size:10px;font-weight:700;border:1px solid rgba(245,166,35,0.2);">PREMIUM</span>
+                        <div class="label">PESO CARD</div>
+                        <div class="title">
+                            <span>PESO</span>
+                            <span class="badge">PREMIUM</span>
                         </div>
                     </div>
-                    <div style="text-align:right;">
-                        <div style="font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:2px;text-transform:uppercase;">Blockchain</div>
-                        <div style="font-size:14px;font-weight:700;color:var(--peso-white);letter-spacing:1px;background:rgba(255,255,255,0.05);padding:4px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);">⚡ SOLANA</div>
+                    <div class="blockchain">
+                        <div class="label-sm">Blockchain</div>
+                        <div class="value">⚡ SOLANA</div>
                     </div>
                 </div>
 
-                <!-- Баланс в PESO -->
-                <div style="text-align:center;padding:24px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;z-index:2;">
-                    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:3px;text-transform:uppercase;">Current Balance</div>
-                    <div style="display:flex;align-items:baseline;justify-content:center;gap:8px;">
-                        <span style="font-size:52px;font-weight:700;color:var(--peso-gold);font-family:'Playfair Display',serif;" id="cardBalance">0.00</span>
-                        <span style="font-size:18px;font-weight:400;color:rgba(255,255,255,0.3);">PESO</span>
+                <div class="balance-section">
+                    <div class="label">Current Balance</div>
+                    <div class="balance">
+                        <span class="amount" id="cardBalance">0.00</span>
+                        <span class="currency">PESO</span>
                     </div>
-                    <div style="width:80px;height:2px;margin:8px auto 0;background:linear-gradient(90deg,transparent,var(--peso-gold),transparent);"></div>
+                    <div class="gold-line"></div>
                 </div>
 
-                <!-- Баланс в USD + Курс -->
-                <div style="display:flex;justify-content:center;gap:30px;padding:14px 0;position:relative;z-index:2;flex-wrap:wrap;">
-                    <div style="text-align:center;">
-                        <div style="font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:2px;text-transform:uppercase;">≈ USD Value</div>
-                        <div style="font-size:22px;font-weight:700;color:var(--peso-white);" id="cardBalanceUSD">$0.00</div>
+                <div class="info-row">
+                    <div class="item">
+                        <div class="label">≈ USD Value</div>
+                        <div class="value" id="cardBalanceUSD">$0.00</div>
                     </div>
-                    <div style="width:1px;background:rgba(255,255,255,0.06);"></div>
-                    <div style="text-align:center;">
-                        <div style="font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:2px;text-transform:uppercase;">Live Price</div>
-                        <div style="font-size:18px;font-weight:600;color:var(--peso-gold);" id="cardCourse">$0.0015</div>
+                    <div class="divider"></div>
+                    <div class="item">
+                        <div class="label">Live Price</div>
+                        <div class="value gold" id="cardCourse">$0.0015</div>
                     </div>
-                    <div style="width:1px;background:rgba(255,255,255,0.06);"></div>
-                    <div style="text-align:center;">
-                        <div style="font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:2px;text-transform:uppercase;">Status</div>
-                        <div style="font-size:14px;font-weight:600;color:#14F195;" id="cardStatusText">🟢 Online</div>
+                    <div class="divider"></div>
+                    <div class="item">
+                        <div class="label">Status</div>
+                        <div class="value green" id="cardStatusText">🟢 Online</div>
                     </div>
                 </div>
 
-                <!-- Адрес + Кнопки -->
-                <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;position:relative;z-index:2;">
-                    <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:150px;">
-                        <div style="width:32px;height:32px;border-radius:50%;background:rgba(245,166,35,0.15);display:flex;align-items:center;justify-content:center;font-size:14px;">🔑</div>
-                        <div>
-                            <div style="font-size:8px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase;">Wallet Address</div>
-                            <div id="cardAddress" style="font-family:monospace;font-size:11px;color:var(--peso-white);word-break:break-all;max-width:200px;">
-                                Не подключён
-                            </div>
+                <div class="address-row">
+                    <div class="addr">
+                        <div class="icon">🔑</div>
+                        <div class="text">
+                            <div class="label">Wallet Address</div>
+                            <div class="value" id="cardAddress">Not connected</div>
                         </div>
                     </div>
-                    <div style="display:flex;gap:6px;">
-                        <button style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);padding:6px 14px;border-radius:20px;font-size:11px;cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='#F5A623';this.style.color='#F5A623';" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='rgba(255,255,255,0.6)';" onclick="copyAddress()">📋 Copy</button>
-                        <button style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);color:#FF6B35;padding:6px 14px;border-radius:20px;font-size:11px;cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='#FF6B35';" onmouseout="this.style.borderColor='rgba(255,107,53,0.2)';" onclick="disconnectCard()">🔌</button>
+                    <div class="actions">
+                        <button onclick="copyAddress()">📋 Copy</button>
+                        <button class="danger" onclick="disconnectCard()">🔌</button>
                     </div>
                 </div>
 
-                <!-- Кнопки действий -->
-                <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;">
-                    <button class="btn-primary" onclick="connectCard()" id="connectCardBtn" style="padding:14px 40px;font-size:16px;border-radius:50px;background:linear-gradient(135deg, var(--peso-gold), #C9911A);color:var(--peso-dark);font-weight:700;border:none;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(245,166,35,0.3);" 
-                        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 40px rgba(245,166,35,0.4)';" 
-                        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(245,166,35,0.3)';">🦊 Connect Phantom</button>
-                    <button class="btn-secondary" onclick="refreshCardBalance()" style="padding:14px 28px;font-size:14px;border-radius:50px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:var(--peso-white);cursor:pointer;transition:all 0.3s;" 
-                        onmouseover="this.style.borderColor='var(--peso-gold)';" 
-                        onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';">🔄 Refresh</button>
-                    <button class="btn-tertiary" onclick="buyPESO()" style="padding:14px 28px;font-size:14px;border-radius:50px;background:rgba(20,241,149,0.08);border:1px solid rgba(20,241,149,0.15);color:#14F195;cursor:pointer;transition:all 0.3s;" 
-                        onmouseover="this.style.borderColor='#14F195';this.style.background='rgba(20,241,149,0.15)';" 
-                        onmouseout="this.style.borderColor='rgba(20,241,149,0.15)';this.style.background='rgba(20,241,149,0.08)';">💰 Buy PESO</button>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="connectCard()" id="connectCardBtn">🦊 Connect Phantom</button>
+                    <button class="btn-secondary" onclick="refreshCardBalance()">🔄 Refresh</button>
+                    <button class="btn-tertiary" onclick="buyPESO()">💰 Buy PESO</button>
                 </div>
 
-                <!-- Статус -->
-                <div id="cardStatus" style="text-align:center;margin-top:14px;color:rgba(255,255,255,0.35);font-size:12px;position:relative;z-index:2;">
-                    Нажми "Connect Phantom", чтобы увидеть баланс
-                </div>
-
-                <!-- Нижний декоративный элемент -->
-                <div style="position:absolute;bottom:-20px;right:-20px;font-size:120px;color:rgba(245,166,35,0.03);font-family:'Playfair Display',serif;pointer-events:none;">PESO</div>
+                <div class="status-text" id="cardStatus">Click "Connect Phantom" to see your balance</div>
             </div>
 
-            <!-- Быстрая покупка PESO -->
+            <!-- Быстрая покупка -->
             <div style="margin-top:30px;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:24px;padding:30px;text-align:center;">
-                <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;">
-                    <span style="font-size:24px;">💰</span>
-                    <h4 style="color:var(--peso-gold);margin:0;">Купить PESO</h4>
-                    <span style="background:rgba(245,166,35,0.1);color:var(--peso-gold);padding:2px 12px;border-radius:12px;font-size:11px;font-weight:600;">1 PESO = $0.0015</span>
-                </div>
+                <h4 style="color:var(--peso-gold);margin-bottom:16px;">💰 Buy PESO Instantly</h4>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-                    <button class="btn-primary" onclick="buyPESOWithAmount(10)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;" 
-                        onmouseover="this.style.background='rgba(245,166,35,0.2)';" 
-                        onmouseout="this.style.background='rgba(245,166,35,0.1)';">$10</button>
-                    <button class="btn-primary" onclick="buyPESOWithAmount(50)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;" 
-                        onmouseover="this.style.background='rgba(245,166,35,0.2)';" 
-                        onmouseout="this.style.background='rgba(245,166,35,0.1)';">$50</button>
-                    <button class="btn-primary" onclick="buyPESOWithAmount(100)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;" 
-                        onmouseover="this.style.background='rgba(245,166,35,0.2)';" 
-                        onmouseout="this.style.background='rgba(245,166,35,0.1)';">$100</button>
-                    <button class="btn-primary" onclick="buyPESOWithAmount(500)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;" 
-                        onmouseover="this.style.background='rgba(245,166,35,0.2)';" 
-                        onmouseout="this.style.background='rgba(245,166,35,0.1)';">$500</button>
-                    <button class="btn-primary" onclick="buyPESOWithAmount(1000)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;" 
-                        onmouseover="this.style.background='rgba(245,166,35,0.2)';" 
-                        onmouseout="this.style.background='rgba(245,166,35,0.1)';">$1,000</button>
-                    <button class="btn-secondary" onclick="buyPESO()" style="padding:10px 24px;font-size:14px;border-radius:30px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);cursor:pointer;transition:all 0.3s;" 
-                        onmouseover="this.style.borderColor='var(--peso-gold)';this.style.color='var(--peso-gold)';" 
-                        onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.6)';">✏️ Custom</button>
+                    <button class="btn-primary" onclick="buyPESOWithAmount(10)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;">$10</button>
+                    <button class="btn-primary" onclick="buyPESOWithAmount(50)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;">$50</button>
+                    <button class="btn-primary" onclick="buyPESOWithAmount(100)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;">$100</button>
+                    <button class="btn-primary" onclick="buyPESOWithAmount(500)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;">$500</button>
+                    <button class="btn-primary" onclick="buyPESOWithAmount(1000)" style="padding:10px 24px;font-size:14px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--peso-gold);border-radius:30px;cursor:pointer;transition:all 0.3s;">$1,000</button>
+                    <button class="btn-secondary" onclick="buyPESO()" style="padding:10px 24px;font-size:14px;border-radius:30px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);cursor:pointer;">✏️ Custom</button>
                 </div>
                 <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-                    <a href="https://jup.ag/swap/USDC-7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank" class="btn-secondary" style="padding:6px 18px;font-size:12px;border-radius:20px;background:#9945FF;color:white;border:none;cursor:pointer;">🟣 Jupiter</a>
-                    <a href="https://app.meteora.ag/" target="_blank" class="btn-secondary" style="padding:6px 18px;font-size:12px;border-radius:20px;background:#00D4AA;color:#0A1A2B;border:none;cursor:pointer;">💧 Meteora</a>
-                    <a href="https://raydium.io/swap/" target="_blank" class="btn-secondary" style="padding:6px 18px;font-size:12px;border-radius:20px;background:#6A1B9A;color:white;border:none;cursor:pointer;">⚡ Raydium</a>
+                    <a href="https://jup.ag/swap/USDC-7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank" class="btn-secondary" style="padding:6px 18px;font-size:12px;border-radius:20px;background:#9945FF;color:white;border:none;">🟣 Jupiter</a>
+                    <a href="https://app.meteora.ag/" target="_blank" class="btn-secondary" style="padding:6px 18px;font-size:12px;border-radius:20px;background:#00D4AA;color:#0A1A2B;border:none;">💧 Meteora</a>
+                    <a href="https://raydium.io/swap/" target="_blank" class="btn-secondary" style="padding:6px 18px;font-size:12px;border-radius:20px;background:#6A1B9A;color:white;border:none;">⚡ Raydium</a>
                 </div>
             </div>
 
-            <!-- ИСТОРИЯ -->
+            <!-- История -->
             <div style="margin-top:30px;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:24px;padding:30px;">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
-                    <h4 style="color:var(--peso-gold);margin:0;">📋 История транзакций</h4>
-                    <span style="font-size:11px;color:rgba(255,255,255,0.2);">последние 3 операции</span>
-                </div>
+                <h4 style="color:var(--peso-gold);margin-bottom:16px;">📋 Transaction History</h4>
                 <div id="cardHistory" style="text-align:center;color:rgba(255,255,255,0.3);font-size:14px;padding:12px;">
-                    Подключи кошелёк, чтобы увидеть историю
+                    Connect wallet to see history
                 </div>
             </div>
 
-            <!-- ИНСТРУКЦИЯ -->
+            <!-- Инструкция -->
             <div style="margin-top:30px;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;padding:30px;">
-                <h4 style="color:var(--peso-gold);text-align:center;margin-bottom:12px;">📖 Как купить PESO</h4>
+                <h4 style="color:var(--peso-gold);text-align:center;margin-bottom:12px;">📖 How to Buy PESO</h4>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
                     <div style="text-align:center;padding:12px;background:rgba(255,255,255,0.03);border-radius:12px;">
                         <div style="font-size:28px;">1</div>
-                        <div style="font-size:13px;color:var(--peso-white);font-weight:600;">Установи Phantom</div>
+                        <div style="font-size:13px;color:var(--peso-white);font-weight:600;">Install Phantom</div>
                         <div style="font-size:11px;color:rgba(255,255,255,0.4);"><a href="https://phantom.app/" target="_blank" style="color:var(--peso-gold);">phantom.app</a></div>
                     </div>
                     <div style="text-align:center;padding:12px;background:rgba(255,255,255,0.03);border-radius:12px;">
                         <div style="font-size:28px;">2</div>
-                        <div style="font-size:13px;color:var(--peso-white);font-weight:600;">Купи USDC</div>
-                        <div style="font-size:11px;color:rgba(255,255,255,0.4);">На любой бирже</div>
+                        <div style="font-size:13px;color:var(--peso-white);font-weight:600;">Buy USDC</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,0.4);">On any exchange</div>
                     </div>
                     <div style="text-align:center;padding:12px;background:rgba(255,255,255,0.03);border-radius:12px;">
                         <div style="font-size:28px;">3</div>
                         <div style="font-size:13px;color:var(--peso-white);font-weight:600;">Connect Wallet</div>
-                        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Нажми кнопку выше</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Click button above</div>
                     </div>
                     <div style="text-align:center;padding:12px;background:rgba(255,255,255,0.03);border-radius:12px;">
                         <div style="font-size:28px;">4</div>
                         <div style="font-size:13px;color:var(--peso-white);font-weight:600;">Buy PESO</div>
-                        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Подтверди транзакцию</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Confirm transaction</div>
                     </div>
                 </div>
                 <div style="text-align:center;margin-top:16px;color:rgba(255,255,255,0.25);font-size:12px;">
-                    🔹 Цена: $0.0015 за 1 PESO • Комиссия: 0.25% • Мин. покупка: $10
+                    🔹 Price: $0.0015 per PESO • Fee: 0.25% • Min. purchase: $10
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PAY WITH PESO — МАРКЕТПЛЕЙСЫ                             -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- PAY WITH PESO                                                  -->
+    <!-- ============================================================ -->
     <section class="page" id="pay">
         <div class="page-header">
             <h1>🛒 Pay with PESO</h1>
@@ -1219,9 +1585,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- GOLD                                                       -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- GOLD                                                          -->
+    <!-- ============================================================ -->
     <section class="page" id="gold">
         <div class="page-header">
             <h1>🏦 Gold Vault & Bullion</h1>
@@ -1234,9 +1600,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- LUXURY                                                     -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- LUXURY                                                        -->
+    <!-- ============================================================ -->
     <section class="page" id="luxury">
         <div class="page-header">
             <h1>🛥️ Luxury Rentals</h1>
@@ -1249,9 +1615,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- DEFENSE                                                     -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- DEFENSE                                                       -->
+    <!-- ============================================================ -->
     <section class="page" id="defense">
         <div class="page-header">
             <h1>🛡️ Defense & Security</h1>
@@ -1264,9 +1630,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ENTERTAINMENT                                               -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- ENTERTAINMENT                                                 -->
+    <!-- ============================================================ -->
     <section class="page" id="entertainment">
         <div class="page-header">
             <h1>🎰 Entertainment</h1>
@@ -1280,9 +1646,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ECOSYSTEM                                                   -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- ECOSYSTEM                                                     -->
+    <!-- ============================================================ -->
     <section class="page" id="ecosystem">
         <div class="page-header">
             <h1>🌍 PESO Ecosystem</h1>
@@ -1301,9 +1667,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- WHITEPAPER                                                   -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- WHITEPAPER                                                    -->
+    <!-- ============================================================ -->
     <section class="page" id="whitepaper">
         <div class="page-header">
             <h1>📄 Whitepaper</h1>
@@ -1321,9 +1687,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- CONTACT                                                     -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- CONTACT                                                       -->
+    <!-- ============================================================ -->
     <section class="page" id="contact">
         <div class="page-header">
             <h1>📬 Contact Us</h1>
@@ -1346,9 +1712,9 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PARTNERS TICKER                                             -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- PARTNERS TICKER                                               -->
+    <!-- ============================================================ -->
     <div class="partners-ticker-wrap">
         <div class="partners-ticker">
             <span class="partner-item">🏦 Banreservas</span>
@@ -1378,9 +1744,9 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- NEWS TICKER                                                 -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- NEWS TICKER                                                   -->
+    <!-- ============================================================ -->
     <div class="news-ticker">
         <div class="news-ticker-content">
             <span>📰 News:</span>
@@ -1394,9 +1760,9 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- FOOTER                                                     -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-col">
@@ -1434,14 +1800,37 @@
         </div>
     </footer>
 
-    <!-- SCROLL TOP -->
+    <!-- ============================================================ -->
+    <!-- SCROLL TOP                                                    -->
+    <!-- ============================================================ -->
     <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">⬆</button>
 
-    <!-- ========================================================= -->
-    <!-- SCRIPTS                                                    -->
-    <!-- ========================================================= -->
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                       -->
+    <!-- ============================================================ -->
+    <script src="https://unpkg.com/@solana/web3.js@1.95.0/lib/index.iife.min.js"></script>
     <script>
+        // ============================================================
+        // GOLD PARTICLES
+        // ============================================================
+        (function createParticles() {
+            const container = document.getElementById('goldParticles');
+            if (!container) return;
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 4 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 15) + 's';
+                container.appendChild(particle);
+            }
+        })();
+
+        // ============================================================
         // COUNTERS
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             const counters = document.querySelectorAll('.counter-number');
             const observer = new IntersectionObserver((entries) => {
@@ -1482,11 +1871,13 @@
             requestAnimationFrame(update);
         }
 
-        // PHANTOM WALLET (для страницы Buy)
+        // ============================================================
+        // PHANTOM (BUY PAGE)
+        // ============================================================
         function connectPhantom() {
             const status = document.getElementById('walletStatus');
             if (!window.solana || !window.solana.isPhantom) {
-                status.innerHTML = '⚠️ Установи <a href="https://phantom.app/" target="_blank" style="color:#F5A623;">Phantom</a>';
+                status.innerHTML = '⚠️ Install <a href="https://phantom.app/" target="_blank" style="color:#F5A623;">Phantom</a>';
                 window.open('https://phantom.app/', '_blank');
                 return;
             }
@@ -1499,155 +1890,170 @@
             });
         }
 
-        // =========================================================
-        // PESO CARD — ПОЛНАЯ РАБОЧАЯ ВЕРСИЯ
-        // =========================================================
-        let cardConnected = false;
-        let cardPublicKey = null;
-        let currentPESOPrice = 0.0015;
+        // ============================================================
+        // PESO CARD — REAL BALANCE
+        // ============================================================
+        const PESO_MINT = '7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa';
+        const RPC_URL = 'https://api.mainnet-beta.solana.com';
 
-        function connectCard() {
+        async function connectCard() {
             const status = document.getElementById('cardStatus');
-            
             if (!window.solana || !window.solana.isPhantom) {
-                status.innerHTML = '⚠️ Установи <a href="https://phantom.app/" target="_blank" style="color:#F5A623;">Phantom</a>';
+                status.innerHTML = '⚠️ Install <a href="https://phantom.app/" target="_blank" style="color:#F5A623;">Phantom</a>';
                 window.open('https://phantom.app/', '_blank');
                 return;
             }
-
-            window.solana.connect().then(resp => {
-                cardPublicKey = resp.publicKey;
-                cardConnected = true;
+            try {
+                const resp = await window.solana.connect();
+                window.cardPublicKey = resp.publicKey;
+                window.cardConnected = true;
+                window.connection = new solanaWeb3.Connection(RPC_URL, 'confirmed');
                 
-                document.getElementById('cardAddress').textContent = cardPublicKey.toString();
+                document.getElementById('cardAddress').textContent = window.cardPublicKey.toString();
                 document.getElementById('connectCardBtn').textContent = '✅ Connected';
                 document.getElementById('connectCardBtn').style.background = '#14F195';
                 document.getElementById('connectCardBtn').style.color = '#0A1A2B';
                 document.getElementById('cardStatusText').textContent = '🟢 Online';
-                status.textContent = '✅ Кошелёк подключён';
+                status.textContent = '✅ Wallet connected';
                 status.style.color = '#14F195';
                 
-                getCardBalance();
+                await getRealPESOBalance();
                 updatePESOPrice();
-                
-            }).catch(err => {
-                status.textContent = '❌ Ошибка: ' + err.message;
+            } catch (err) {
+                status.textContent = '❌ Error: ' + err.message;
                 status.style.color = '#FF6B35';
-            });
+            }
         }
 
-        function getCardBalance() {
-            if (!cardConnected || !cardPublicKey) {
-                document.getElementById('cardStatus').textContent = '⚠️ Сначала подключи кошелёк';
+        async function getRealPESOBalance() {
+            if (!window.cardConnected || !window.cardPublicKey) {
+                document.getElementById('cardStatus').textContent = '⚠️ Connect wallet first';
                 return;
             }
+            const status = document.getElementById('cardStatus');
+            status.textContent = '⏳ Loading balance...';
+            status.style.color = 'rgba(255,255,255,0.4)';
             
-            document.getElementById('cardStatus').textContent = '⏳ Загрузка баланса...';
-            
-            setTimeout(() => {
-                const mockBalance = (Math.random() * 15000 + 100).toFixed(2);
-                const peso = parseFloat(mockBalance);
-                const usd = peso * currentPESOPrice;
-                
+            try {
+                const tokenAccounts = await window.connection.getParsedTokenAccountsByOwner(
+                    window.cardPublicKey,
+                    { mint: new solanaWeb3.PublicKey(PESO_MINT) }
+                );
+                let balance = 0;
+                if (tokenAccounts.value.length > 0) {
+                    const accountInfo = tokenAccounts.value[0].account.data.parsed.info;
+                    balance = accountInfo.tokenAmount.uiAmount || 0;
+                }
+                const peso = balance;
+                const usd = peso * window.currentPESOPrice;
                 document.getElementById('cardBalance').textContent = peso.toFixed(2);
                 document.getElementById('cardBalanceUSD').textContent = '$' + usd.toFixed(2);
-                document.getElementById('cardCourse').textContent = '$' + currentPESOPrice.toFixed(4);
-                
-                document.getElementById('cardStatus').textContent = '✅ Баланс обновлён';
-                document.getElementById('cardStatus').style.color = 'rgba(255,255,255,0.4)';
-                
-                const history = document.getElementById('cardHistory');
-                const now = new Date();
-                history.innerHTML = `
-                    <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--glass-border);">
-                        <span>🟢 Получено</span>
-                        <span style="color:#14F195;">+1,234 PESO</span>
-                        <span style="color:rgba(255,255,255,0.3);font-size:11px;">${now.toLocaleTimeString()}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--glass-border);">
-                        <span>🔴 Отправлено</span>
-                        <span style="color:#FF6B35;">-500 PESO</span>
-                        <span style="color:rgba(255,255,255,0.3);font-size:11px;">${new Date(now - 3600000).toLocaleTimeString()}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:10px 0;">
-                        <span>🟢 Стейкинг</span>
-                        <span style="color:#14F195;">+88 PESO</span>
-                        <span style="color:rgba(255,255,255,0.3);font-size:11px;">${new Date(now - 7200000).toLocaleTimeString()}</span>
-                    </div>
-                `;
-            }, 800);
+                document.getElementById('cardCourse').textContent = '$' + window.currentPESOPrice.toFixed(4);
+                status.textContent = '✅ Balance updated';
+                status.style.color = 'rgba(255,255,255,0.4)';
+                await updateCardHistory();
+            } catch (error) {
+                console.error('Error loading balance:', error);
+                status.textContent = '⚠️ Error loading balance';
+                status.style.color = '#FF6B35';
+                document.getElementById('cardBalance').textContent = '0.00';
+                document.getElementById('cardBalanceUSD').textContent = '$0.00';
+            }
+        }
+
+        async function updateCardHistory() {
+            const history = document.getElementById('cardHistory');
+            try {
+                const signatures = await window.connection.getSignaturesForAddress(
+                    new solanaWeb3.PublicKey(PESO_MINT),
+                    { limit: 5 }
+                );
+                if (signatures.length === 0) {
+                    history.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);font-size:14px;padding:12px;">No transactions found</div>';
+                    return;
+                }
+                let html = '';
+                for (const sig of signatures.slice(0, 3)) {
+                    const time = sig.blockTime ? new Date(sig.blockTime * 1000).toLocaleTimeString() : 'Recent';
+                    const statusIcon = sig.confirmationStatus === 'finalized' ? '✅' : '⏳';
+                    html += `<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--glass-border);">
+                        <span>${statusIcon} ${sig.signature.slice(0, 8)}...</span>
+                        <span style="color:rgba(255,255,255,0.3);font-size:11px;">${time}</span>
+                    </div>`;
+                }
+                history.innerHTML = html;
+            } catch (error) {
+                history.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);font-size:14px;padding:12px;">History temporarily unavailable</div>';
+            }
         }
 
         function updatePESOPrice() {
             const basePrice = 0.0015;
             const change = (Math.random() - 0.5) * 0.00006;
-            currentPESOPrice = basePrice + change;
-            document.getElementById('cardCourse').textContent = '$' + currentPESOPrice.toFixed(4);
-            
+            window.currentPESOPrice = basePrice + change;
+            document.getElementById('cardCourse').textContent = '$' + window.currentPESOPrice.toFixed(4);
             const pesoEl = document.getElementById('cardBalance');
             if (pesoEl && pesoEl.textContent !== '0.00') {
                 const peso = parseFloat(pesoEl.textContent);
-                document.getElementById('cardBalanceUSD').textContent = '$' + (peso * currentPESOPrice).toFixed(2);
+                document.getElementById('cardBalanceUSD').textContent = '$' + (peso * window.currentPESOPrice).toFixed(2);
             }
         }
 
         function refreshCardBalance() {
-            if (!cardConnected) {
-                document.getElementById('cardStatus').textContent = '⚠️ Сначала подключи кошелёк';
+            if (!window.cardConnected) {
+                document.getElementById('cardStatus').textContent = '⚠️ Connect wallet first';
                 document.getElementById('cardStatus').style.color = '#FF6B35';
                 return;
             }
             updatePESOPrice();
-            getCardBalance();
+            getRealPESOBalance();
         }
 
         function buyPESO() {
-            if (!cardConnected) {
-                document.getElementById('cardStatus').textContent = '⚠️ Сначала подключи кошелёк';
+            if (!window.cardConnected) {
+                document.getElementById('cardStatus').textContent = '⚠️ Connect wallet first';
                 document.getElementById('cardStatus').style.color = '#FF6B35';
                 return;
             }
-            const amount = prompt('💰 Сколько USDC потратить на покупку PESO?\n(Цена: $0.0015 за PESO)', '100');
+            const amount = prompt('💰 How much USDC to spend on PESO?\n(Price: $0.0015 per PESO)', '100');
             if (!amount || isNaN(amount) || amount <= 0) return;
-            const pesoAmount = (amount / currentPESOPrice).toLocaleString(undefined, {maximumFractionDigits: 0});
-            const mint = '7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa';
-            window.open(`https://jup.ag/swap/USDC-${mint}?amount=${amount}`, '_blank');
-            document.getElementById('cardStatus').textContent = `⏳ Открываем Jupiter для покупки ${pesoAmount} PESO...`;
+            const pesoAmount = (amount / window.currentPESOPrice).toLocaleString(undefined, {maximumFractionDigits: 0});
+            window.open(`https://jup.ag/swap/USDC-${PESO_MINT}?amount=${amount}`, '_blank');
+            document.getElementById('cardStatus').textContent = `⏳ Opening Jupiter to buy ${pesoAmount} PESO...`;
             document.getElementById('cardStatus').style.color = 'var(--peso-gold)';
         }
 
         function buyPESOWithAmount(usd) {
-            if (!cardConnected) {
-                document.getElementById('cardStatus').textContent = '⚠️ Сначала подключи кошелёк';
+            if (!window.cardConnected) {
+                document.getElementById('cardStatus').textContent = '⚠️ Connect wallet first';
                 document.getElementById('cardStatus').style.color = '#FF6B35';
                 return;
             }
-            const pesoAmount = (usd / currentPESOPrice).toLocaleString(undefined, {maximumFractionDigits: 0});
-            const mint = '7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa';
-            window.open(`https://jup.ag/swap/USDC-${mint}?amount=${usd}`, '_blank');
-            document.getElementById('cardStatus').textContent = `⏳ Покупка ${pesoAmount} PESO за $${usd}...`;
+            const pesoAmount = (usd / window.currentPESOPrice).toLocaleString(undefined, {maximumFractionDigits: 0});
+            window.open(`https://jup.ag/swap/USDC-${PESO_MINT}?amount=${usd}`, '_blank');
+            document.getElementById('cardStatus').textContent = `⏳ Buying ${pesoAmount} PESO for $${usd}...`;
             document.getElementById('cardStatus').style.color = 'var(--peso-gold)';
         }
 
         function copyAddress() {
-            if (!cardPublicKey) {
-                alert('Сначала подключи кошелёк');
+            if (!window.cardPublicKey) {
+                alert('Connect wallet first');
                 return;
             }
-            navigator.clipboard.writeText(cardPublicKey.toString()).then(() => {
-                document.getElementById('cardStatus').textContent = '✅ Адрес скопирован!';
+            navigator.clipboard.writeText(window.cardPublicKey.toString()).then(() => {
+                document.getElementById('cardStatus').textContent = '✅ Address copied!';
                 document.getElementById('cardStatus').style.color = '#14F195';
                 setTimeout(() => {
-                    document.getElementById('cardStatus').textContent = '✅ Кошелёк подключён';
+                    document.getElementById('cardStatus').textContent = '✅ Wallet connected';
                     document.getElementById('cardStatus').style.color = 'rgba(255,255,255,0.4)';
                 }, 2000);
             });
         }
 
         function disconnectCard() {
-            cardConnected = false;
-            cardPublicKey = null;
-            document.getElementById('cardAddress').textContent = 'Не подключён';
+            window.cardConnected = false;
+            window.cardPublicKey = null;
+            document.getElementById('cardAddress').textContent = 'Not connected';
             document.getElementById('connectCardBtn').textContent = '🦊 Connect Phantom';
             document.getElementById('connectCardBtn').style.background = 'linear-gradient(135deg, var(--peso-gold), #C9911A)';
             document.getElementById('connectCardBtn').style.color = 'var(--peso-dark)';
@@ -1656,26 +2062,26 @@
             document.getElementById('cardCourse').textContent = '$0.0015';
             document.getElementById('cardStatusText').textContent = '⛔ Offline';
             document.getElementById('cardStatusText').style.color = '#FF6B35';
-            document.getElementById('cardStatus').textContent = '🔌 Кошелёк отключён';
+            document.getElementById('cardStatus').textContent = '🔌 Wallet disconnected';
             document.getElementById('cardStatus').style.color = 'rgba(255,255,255,0.4)';
             document.getElementById('cardHistory').innerHTML = `
                 <div style="text-align:center;color:rgba(255,255,255,0.3);font-size:14px;padding:12px;">
-                    Подключи кошелёк, чтобы увидеть историю
+                    Connect wallet to see history
                 </div>
             `;
         }
 
-        // =========================================================
+        // ============================================================
         // STAKING
-        // =========================================================
+        // ============================================================
         function startStaking(months) {
             alert(`🔒 Staking for ${months} months\n\nTo stake PESO, please visit Meteora:\nhttps://app.meteora.ag/`);
             window.open('https://app.meteora.ag/', '_blank');
         }
 
-        // =========================================================
+        // ============================================================
         // NAVIGATION
-        // =========================================================
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             function navigateTo(pageId) {
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1730,7 +2136,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // Авто-подключение для PESO Card
             if (window.solana && window.solana.isPhantom && window.solana.isConnected) {
                 connectCard();
             }
@@ -1738,9 +2143,9 @@
             setInterval(updatePESOPrice, 10000);
         });
 
-        // =========================================================
+        // ============================================================
         // LANGUAGE
-        // =========================================================
+        // ============================================================
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -1749,9 +2154,9 @@
             });
         });
 
-        // =========================================================
-        // PRICE (LIVE)
-        // =========================================================
+        // ============================================================
+        // PRICE
+        // ============================================================
         function updatePrice() {
             const basePrice = 0.0015;
             const change = (Math.random() - 0.5) * 0.00006;
@@ -1772,8 +2177,6 @@
         console.log('💰 Price: $0.0015');
         console.log('💧 Liquidity: $64.5M');
         console.log('📊 Market Cap: $150M');
-        console.log('💳 PESO Card ready');
     </script>
-
 </body>
 </html>
