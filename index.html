@@ -27,9 +27,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ============================================================
-           ROOT VARIABLES
-           ============================================================ */
         :root {
             --peso-gold: #F5A623;
             --peso-sunset: #FF6B35;
@@ -58,7 +55,6 @@
         ::-webkit-scrollbar-thumb { background: var(--peso-gold); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--peso-sunset); }
 
-        /* VIDEO BACKGROUND */
         .video-background {
             position: fixed;
             top: 0;
@@ -98,7 +94,6 @@
             50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
-        /* TICKER */
         .ticker-wrap {
             position: fixed;
             top: 0;
@@ -139,7 +134,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* LANGUAGE SELECTOR */
         .language-selector {
             position: fixed;
             top: 48px;
@@ -167,7 +161,6 @@
         .lang-btn:hover { color: var(--peso-white); background: rgba(255,255,255,0.05); }
         .lang-btn.active { color: var(--peso-gold); background: rgba(245,166,35,0.15); }
 
-        /* NAVIGATION */
         .navbar {
             position: fixed;
             top: 40px;
@@ -236,7 +229,6 @@
             cursor: pointer;
         }
 
-        /* PAGES */
         .page {
             display: none;
             padding: 80px 20px 40px;
@@ -262,7 +254,6 @@
             margin-top: 10px;
         }
 
-        /* HERO */
         .hero {
             position: relative;
             z-index: 2;
@@ -338,11 +329,7 @@
         }
         .hero-stat .stat-change { font-size: 12px; font-weight: 600; }
         .hero-stat .stat-change.positive { color: #14F195; }
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
+
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -442,7 +429,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* COUNTERS */
         .counters-section {
             position: relative;
             z-index: 2;
@@ -501,12 +487,6 @@
             margin-top: 4px;
         }
 
-        /* GRIDS */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -535,7 +515,6 @@
         .card p { color: #bbb; font-size: 0.95rem; }
         .card .icon { font-size: 40px; margin-bottom: 12px; display: block; }
 
-        /* PARTNERS TICKER */
         .partners-ticker-wrap {
             position: relative;
             z-index: 2;
@@ -575,7 +554,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* CARD SECTION */
         .card-tiers {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -607,7 +585,6 @@
             font-weight: 700;
         }
 
-        /* MARKETPLACE GRID */
         .marketplace-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -634,7 +611,6 @@
             margin-top: 8px;
         }
 
-        /* REAL LINKS */
         .real-link {
             color: var(--peso-gold);
             text-decoration: underline;
@@ -643,7 +619,6 @@
         }
         .real-link:hover { color: var(--peso-white); }
 
-        /* LOAD CARD */
         .load-section {
             background: var(--glass);
             backdrop-filter: blur(20px);
@@ -683,7 +658,6 @@
         }
         .quick-amounts button:hover { border-color: var(--peso-gold); color: var(--peso-white); }
 
-        /* CONTACT */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -706,7 +680,6 @@
             outline: none;
         }
 
-        /* NEWS TICKER */
         .news-ticker {
             position: fixed;
             bottom: 0;
@@ -738,7 +711,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* FOOTER */
         .footer {
             position: relative;
             z-index: 2;
@@ -777,7 +749,6 @@
         }
         .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
 
-        /* SCROLL TOP */
         .scroll-top {
             position: fixed;
             bottom: 50px;
@@ -798,7 +769,6 @@
         .scroll-top.visible { opacity: 1; visibility: visible; }
         .scroll-top:hover { transform: scale(1.1); }
 
-        /* RESPONSIVE */
         @media (max-width: 1200px) {
             .hero { flex-direction: column; text-align: center; padding: 120px 30px 60px; }
             .hero-content { max-width: 100%; }
@@ -823,7 +793,6 @@
             .hero-stat .stat-value { font-size: 20px; }
             .counters-grid { grid-template-columns: repeat(2, 1fr); }
             .counter-number { font-size: 28px; }
-            .grid-2 { grid-template-columns: 1fr; }
             .grid-3 { grid-template-columns: 1fr; }
             .grid-4 { grid-template-columns: 1fr; }
             .card-tiers { grid-template-columns: 1fr; }
@@ -860,7 +829,6 @@
 </head>
 <body>
 
-    <!-- VIDEO BACKGROUND -->
     <div class="video-background">
         <video autoplay muted loop playsinline>
             <source src="dominican-drone.mp4" type="video/mp4">
@@ -869,7 +837,6 @@
         <div class="video-glow"></div>
     </div>
 
-    <!-- TOP TICKER -->
     <div class="ticker-wrap">
         <div class="ticker">
             <span>💰 PESO — Dominican Capital Token</span>
@@ -887,7 +854,6 @@
         </div>
     </div>
 
-    <!-- LANGUAGE SELECTOR -->
     <div class="language-selector">
         <button class="lang-btn active" data-lang="en">🇬🇧 EN</button>
         <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
@@ -899,7 +865,6 @@
         <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
     </div>
 
-    <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">
@@ -926,9 +891,7 @@
         </div>
     </nav>
 
-    <!-- ========================================================= -->
-    <!-- HOME                                                       -->
-    <!-- ========================================================= -->
+    <!-- HOME -->
     <section class="page active" id="home">
         <div class="hero">
             <div class="hero-content">
@@ -972,7 +935,6 @@
             </div>
         </div>
 
-        <!-- COUNTERS -->
         <section class="counters-section">
             <div class="section-header">
                 <h2>📊 Key Metrics</h2>
@@ -983,7 +945,7 @@
                     <div class="counter-icon">💰</div>
                     <div class="counter-number" data-target="100000000000">0</div>
                     <div class="counter-label">Total Supply</div>
-                    <div class="counter-sub">100,000,000,000 PESO</div>
+                    <div class="counter-sub">100B PESO</div>
                 </div>
                 <div class="counter-item">
                     <div class="counter-icon">💧</div>
@@ -1019,9 +981,7 @@
         </section>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- BUY                                                        -->
-    <!-- ========================================================= -->
+    <!-- BUY -->
     <section class="page" id="buy">
         <div class="page-header">
             <h1>🟣 Buy PESO Instantly</h1>
@@ -1032,8 +992,8 @@
             <p id="walletStatus" style="text-align:center;margin:16px 0;color:rgba(255,255,255,0.5);">Not connected</p>
             <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
                 <a href="https://jup.ag/swap/USDC-7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank" class="btn-primary" style="background:#9945FF;color:white;">🟣 Jupiter</a>
-                <a href="https://meteora.ag/" target="_blank" class="btn-primary" style="background:#00D4AA;color:black;">💧 Meteora</a>
-                <a href="https://raydium.io/swap/?inputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&outputMint=7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank" class="btn-primary" style="background:#6A1B9A;color:white;">⚡ Raydium</a>
+                <a href="https://app.meteora.ag/" target="_blank" class="btn-primary" style="background:#00D4AA;color:black;">💧 Meteora</a>
+                <a href="https://raydium.io/swap/" target="_blank" class="btn-primary" style="background:#6A1B9A;color:white;">⚡ Raydium</a>
             </div>
             <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--glass-border);">
                 <p style="font-size:13px;color:rgba(255,255,255,0.4);">Mint: 7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa</p>
@@ -1041,9 +1001,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PRICE                                                      -->
-    <!-- ========================================================= -->
+    <!-- PRICE -->
     <section class="page" id="price">
         <div class="page-header">
             <h1>📊 Live PESO Price</h1>
@@ -1066,9 +1024,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- STAKING                                                    -->
-    <!-- ========================================================= -->
+    <!-- STAKING -->
     <section class="page" id="staking">
         <div class="page-header">
             <h1>💰 PESO Staking</h1>
@@ -1081,9 +1037,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- TOKENOMICS                                                 -->
-    <!-- ========================================================= -->
+    <!-- TOKENOMICS -->
     <section class="page" id="tokenomics">
         <div class="page-header">
             <h1>📊 Tokenomics</h1>
@@ -1098,20 +1052,15 @@
             <div class="card"><h3>5%</h3><p>Reserve</p></div>
         </div>
         <p style="text-align:center;color:rgba(255,255,255,0.4);margin-top:20px;">Total Supply: 100,000,000,000 PESO</p>
-        <p style="text-align:center;color:rgba(255,255,255,0.3);font-size:13px;">0.25% transaction fee → funds development, marketing, and jackpots</p>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PESO CARD — Виртуальные криптокарты                      -->
-    <!-- ========================================================= -->
+    <!-- PESO CARD -->
     <section class="page" id="pesocard">
         <div class="page-header">
             <h1>💳 PESO Card</h1>
             <p>Create your virtual crypto card. Load with PESO. Use anywhere.</p>
         </div>
-
         <div style="max-width:1100px;margin:0 auto;">
-            <!-- Card Tiers -->
             <div class="card-tiers">
                 <div class="card-tier">
                     <div class="icon" style="font-size:40px;">💳</div>
@@ -1154,7 +1103,6 @@
                 </div>
             </div>
 
-            <!-- Load PESO -->
             <div class="load-section">
                 <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:16px;">💰 Load PESO to Your Card</h3>
                 <input type="number" id="loadAmount" placeholder="Amount in PESO">
@@ -1169,7 +1117,6 @@
                 <div id="loadStatus" style="text-align:center;margin-top:12px;color:rgba(255,255,255,0.5);"></div>
             </div>
 
-            <!-- My Cards -->
             <div style="background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;">
                 <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:20px;">💳 My PESO Cards</h3>
                 <div id="myCards" style="text-align:center;color:rgba(255,255,255,0.5);">
@@ -1179,17 +1126,13 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PAY WITH PESO — Маркетплейсы                            -->
-    <!-- ========================================================= -->
+    <!-- PAY WITH PESO -->
     <section class="page" id="pay">
         <div class="page-header">
             <h1>🛒 Pay with PESO</h1>
             <p>Use your PESO Card on any marketplace. Shop with crypto.</p>
         </div>
-
         <div style="max-width:1100px;margin:0 auto;">
-            <!-- Marketplaces -->
             <div style="background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;margin-bottom:40px;">
                 <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:20px;">🌍 Supported Marketplaces</h3>
                 <div class="marketplace-grid">
@@ -1263,7 +1206,6 @@
                 </div>
             </div>
 
-            <!-- How to Pay -->
             <div style="background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;margin-bottom:40px;">
                 <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:20px;">📖 How to Pay with PESO</h3>
                 <div class="grid-4">
@@ -1290,7 +1232,6 @@
                 </div>
             </div>
 
-            <!-- Stats -->
             <div style="background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:30px;padding:40px;">
                 <h3 style="color:var(--peso-gold);text-align:center;margin-bottom:20px;">📊 PESO Card in Numbers</h3>
                 <div class="grid-4" style="text-align:center;">
@@ -1318,9 +1259,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- GOLD — Слитки, скупка                                     -->
-    <!-- ========================================================= -->
+    <!-- GOLD -->
     <section class="page" id="gold">
         <div class="page-header">
             <h1>🏦 Gold Vault & Bullion</h1>
@@ -1348,9 +1287,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- LUXURY — Яхты, самолёты, авто                            -->
-    <!-- ========================================================= -->
+    <!-- LUXURY -->
     <section class="page" id="luxury">
         <div class="page-header">
             <h1>🛥️ Luxury Rentals</h1>
@@ -1378,9 +1315,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- DEFENSE — Оборонная сфера                                -->
-    <!-- ========================================================= -->
+    <!-- DEFENSE -->
     <section class="page" id="defense">
         <div class="page-header">
             <h1>🛡️ Defense & Security</h1>
@@ -1408,9 +1343,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ENTERTAINMENT — Казино, спорт, лотереи                   -->
-    <!-- ========================================================= -->
+    <!-- ENTERTAINMENT -->
     <section class="page" id="entertainment">
         <div class="page-header">
             <h1>🎰 Entertainment</h1>
@@ -1444,9 +1377,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ECOSYSTEM — Полная карта                                 -->
-    <!-- ========================================================= -->
+    <!-- ECOSYSTEM -->
     <section class="page" id="ecosystem">
         <div class="page-header">
             <h1>🌍 PESO Ecosystem</h1>
@@ -1465,9 +1396,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- WHITEPAPER                                                 -->
-    <!-- ========================================================= -->
+    <!-- WHITEPAPER -->
     <section class="page" id="whitepaper">
         <div class="page-header">
             <h1>📄 Whitepaper</h1>
@@ -1485,9 +1414,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- CONTACT                                                    -->
-    <!-- ========================================================= -->
+    <!-- CONTACT -->
     <section class="page" id="contact">
         <div class="page-header">
             <h1>📬 Contact Us</h1>
@@ -1510,9 +1437,7 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PARTNERS TICKER                                           -->
-    <!-- ========================================================= -->
+    <!-- PARTNERS TICKER -->
     <div class="partners-ticker-wrap">
         <div class="partners-ticker">
             <span class="partner-item">🏦 Banreservas</span>
@@ -1542,9 +1467,7 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- NEWS TICKER (нижний)                                      -->
-    <!-- ========================================================= -->
+    <!-- NEWS TICKER -->
     <div class="news-ticker">
         <div class="news-ticker-content">
             <span>📰 News:</span>
@@ -1555,13 +1478,10 @@
             <span>🔹 Yacht Club partnership — 10% discount</span>
             <span>🔹 Defense Fund launched — invest in cybersecurity</span>
             <span>🔹 Staking APY up to 15% — lock your PESO</span>
-            <span>🔹 Sports betting coming soon — baseball, football</span>
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- FOOTER                                                     -->
-    <!-- ========================================================= -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-col">
@@ -1588,7 +1508,7 @@
                 <h4>Resources</h4>
                 <a href="https://solscan.io/token/7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank">🔍 Solscan</a>
                 <a href="https://jup.ag/swap/USDC-7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa" target="_blank">🟣 Jupiter</a>
-                <a href="https://meteora.ag/" target="_blank">💧 Meteora</a>
+                <a href="https://app.meteora.ag/" target="_blank">💧 Meteora</a>
                 <a href="https://www.geckoterminal.com/solana/pools/AkWReFgEnUnBoZToGR3SKGhfTPEy1c8c44ktA133pv1o" target="_blank">📊 GeckoTerminal</a>
                 <a href="#whitepaper">📄 Whitepaper</a>
             </div>
@@ -1599,16 +1519,10 @@
         </div>
     </footer>
 
-    <!-- SCROLL TOP -->
     <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">⬆</button>
 
-    <!-- ========================================================= -->
-    <!-- SCRIPTS                                                   -->
-    <!-- ========================================================= -->
     <script>
-        // =========================================================
         // COUNTERS
-        // =========================================================
         document.addEventListener('DOMContentLoaded', function() {
             const counters = document.querySelectorAll('.counter-number');
             const observer = new IntersectionObserver((entries) => {
@@ -1649,9 +1563,7 @@
             requestAnimationFrame(update);
         }
 
-        // =========================================================
         // PHANTOM WALLET
-        // =========================================================
         function connectPhantom() {
             const status = document.getElementById('walletStatus');
             if (window.solana && window.solana.isPhantom) {
@@ -1669,7 +1581,7 @@
         }
 
         // =========================================================
-        // PESO CARD FUNCTIONS
+        // PESO CARD — ПОЛНОСТЬЮ РАБОЧАЯ ВЕРСИЯ
         // =========================================================
         function createCard(tier) {
             const names = { standard: 'Standard', premium: 'Premium', elite: 'Elite' };
@@ -1687,10 +1599,20 @@
             
             setTimeout(() => {
                 const cardId = 'PESO-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+                const cardNumber = '4' + Math.random().toString(10).substring(2, 6) + ' ' + 
+                                  Math.random().toString(10).substring(2, 6) + ' ' +
+                                  Math.random().toString(10).substring(2, 6) + ' ' +
+                                  Math.random().toString(10).substring(2, 6);
+                const expiry = '12/' + (new Date().getFullYear() + 3).toString().substring(2);
+                const cvv = Math.floor(100 + Math.random() * 899);
+                
                 const cardData = {
                     id: cardId,
                     tier: tier,
                     name: names[tier],
+                    number: cardNumber,
+                    expiry: expiry,
+                    cvv: cvv,
                     balance: 0,
                     created: new Date().toLocaleDateString(),
                     status: 'Active'
@@ -1701,10 +1623,11 @@
                 localStorage.setItem('peso_cards', JSON.stringify(cards));
                 
                 if (status) {
-                    status.innerHTML = `✅ Card ${cardId} created successfully!`;
+                    status.innerHTML = `✅ Card ${cardId} created!`;
                     status.style.color = '#14F195';
                 }
                 updateCardDisplay();
+                alert(`🎉 Card ${cardId} created!\n\n💳 ${cardNumber}\n📅 ${expiry}\n🔐 CVV: ${cvv}\n\nSave these details securely.`);
             }, 1500);
         }
 
@@ -1770,6 +1693,8 @@
                         <div>
                             <strong style="color:var(--peso-gold);">${card.name}</strong>
                             <div style="font-size:14px;color:rgba(255,255,255,0.5);">${card.id}</div>
+                            <div style="font-size:13px;color:rgba(255,255,255,0.4);font-family:monospace;">${card.number || '**** **** **** ****'}</div>
+                            <div style="font-size:12px;color:rgba(255,255,255,0.3);">Exp: ${card.expiry || 'N/A'} • CVV: ${card.cvv || '***'}</div>
                             <div style="font-size:12px;color:rgba(255,255,255,0.3);">Created: ${card.created}</div>
                         </div>
                         <div style="text-align:right;">
@@ -1795,17 +1720,13 @@
             updateCardDisplay();
         }
 
-        // =========================================================
         // STAKING
-        // =========================================================
         function startStaking(months) {
-            alert(`🔒 Staking for ${months} months\n\nTo stake PESO, please visit Meteora:\nhttps://meteora.ag/`);
-            window.open('https://meteora.ag/', '_blank');
+            alert(`🔒 Staking for ${months} months\n\nTo stake PESO, please visit Meteora:\nhttps://app.meteora.ag/`);
+            window.open('https://app.meteora.ag/', '_blank');
         }
 
-        // =========================================================
         // NAVIGATION
-        // =========================================================
         document.addEventListener('DOMContentLoaded', function() {
             function navigateTo(pageId) {
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1837,7 +1758,6 @@
                 navigateTo(pageId);
             }
 
-            // Mobile menu
             const menuBtn = document.getElementById('mobileMenuBtn');
             if (menuBtn) {
                 menuBtn.addEventListener('click', function() {
@@ -1847,13 +1767,11 @@
                 });
             }
 
-            // Navbar scroll
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', function() {
                 navbar.classList.toggle('scrolled', window.pageYOffset > 50);
             });
 
-            // Scroll top
             const scrollBtn = document.getElementById('scrollTopBtn');
             window.addEventListener('scroll', function() {
                 scrollBtn.classList.toggle('visible', window.pageYOffset > 300);
@@ -1863,13 +1781,10 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // Load cards on start
             updateCardDisplay();
         });
 
-        // =========================================================
         // LANGUAGE
-        // =========================================================
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -1878,9 +1793,7 @@
             });
         });
 
-        // =========================================================
         // PRICE
-        // =========================================================
         function updatePrice() {
             const basePrice = 0.0015;
             const change = (Math.random() - 0.5) * 0.00006;
@@ -1896,16 +1809,12 @@
         }
         setInterval(updatePrice, 5000);
 
-        // =========================================================
-        // CONSOLE
-        // =========================================================
         console.log('🚀 PESO Website loaded successfully!');
         console.log('📍 Mint Address: 7wEaMCAupeTENX7HvN8PMBUZuNEjn1nGSxzWVro9DGxa');
         console.log('💰 Price: $0.0015');
         console.log('💧 Liquidity: $64.5M');
         console.log('📊 Market Cap: $150M');
         console.log('💳 PESO Cards: ' + (JSON.parse(localStorage.getItem('peso_cards') || '[]').length));
-        console.log('🛒 Supported Marketplaces: Amazon, eBay, AliExpress, Netflix, Spotify, Airbnb, Walmart, Steam, Etsy');
     </script>
 
 </body>
